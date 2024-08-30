@@ -1,4 +1,3 @@
-// src/player/dto/update-player.dto.ts
 import { IsInt, IsOptional, IsString } from 'class-validator';
 
 export class UpdatePlayerDto {

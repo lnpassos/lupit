@@ -2,10 +2,10 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import styles from '../styles/Teams.module.scss';
-import { formatDateToBrazilian } from '../utils/data';  // Importe a função
-import Modal from 'react-modal'; // Importar React Modal
-import Swal from 'sweetalert2'; // Importar SweetAlert2
-import { FaEdit, FaTrash } from 'react-icons/fa'; // Importar ícones de editar e excluir
+import { formatDateToBrazilian } from '../utils/data';
+import Modal from 'react-modal';
+import Swal from 'sweetalert2';
+import { FaEdit, FaTrash } from 'react-icons/fa';
 
 interface Team {
   id: number;
@@ -55,7 +55,7 @@ const TeamsPage = () => {
       confirmButtonColor: '#6a0dad',
       cancelButtonColor: '#d33',
       confirmButtonText: 'Sim, excluir!',
-      cancelButtonText: 'Cancelar'
+      cancelButtonText: 'Cancelar',
     });
 
     if (result.isConfirmed) {
@@ -68,22 +68,47 @@ const TeamsPage = () => {
           throw new Error('Erro ao excluir o time');
         }
 
-        Swal.fire(
-          'Excluído!',
-          'O time foi excluído com sucesso.',
-          'success'
-        );
+        Swal.fire('Excluído!', 'O time foi excluído com sucesso.', 'success');
 
         // Atualizar a lista de times após exclusão
-        setTeams(prevTeams => prevTeams.filter(team => team.id !== teamId));
-
+        setTeams((prevTeams) => prevTeams.filter((team) => team.id !== teamId));
       } catch (error) {
-        Swal.fire(
-          'Erro!',
-          'Não foi possível excluir o time.',
-          'error'
-        );
+        Swal.fire('Erro!', 'Não foi possível excluir o time.', 'error');
       }
+    }
+  };
+
+  const handleSave = async () => {
+    if (!currentTeam) return;
+
+    // Atualizando o campo updatedDt antes de salvar
+    const updatedTeam = {
+      ...currentTeam,
+      updatedDt: new Date().toISOString(),
+    };
+
+    try {
+      const response = await fetch(`http://localhost:3001/teams/${updatedTeam.id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name: updatedTeam.name, updatedDt: updatedTeam.updatedDt }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Erro ao salvar o time');
+      }
+
+      // Atualizar a lista de times
+      setTeams((prevTeams) =>
+        prevTeams.map((team) => (team.id === updatedTeam.id ? updatedTeam : team))
+      );
+
+      Swal.fire('Sucesso!', 'Time atualizado com sucesso.', 'success');
+      closeModal();
+    } catch (error) {
+      Swal.fire('Erro!', 'Não foi possível salvar o time.', 'error');
     }
   };
 
@@ -150,45 +175,12 @@ const TeamsPage = () => {
             type="text"
             value={currentTeam?.name || ''}
             onChange={(e) =>
-              setCurrentTeam((prev) =>
-                prev ? { ...prev, name: e.target.value } : null
-              )
+              setCurrentTeam((prev) => (prev ? { ...prev, name: e.target.value } : null))
             }
             className={styles.input}
           />
           <div className={styles.buttons}>
-            <button
-              onClick={async () => {
-                if (!currentTeam) return;
-
-                try {
-                  const response = await fetch(`http://localhost:3001/teams/${currentTeam.id}`, {
-                    method: 'PUT',
-                    headers: {
-                      'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ name: currentTeam.name }),
-                  });
-
-                  if (!response.ok) {
-                    throw new Error('Erro ao salvar o time');
-                  }
-
-                  // Atualizar a lista de times
-                  setTeams((prevTeams) =>
-                    prevTeams.map((team) =>
-                      team.id === currentTeam.id ? currentTeam : team
-                    )
-                  );
-
-                  Swal.fire('Sucesso!', 'Time atualizado com sucesso.', 'success');
-                  closeModal();
-                } catch (error) {
-                  Swal.fire('Erro!', 'Não foi possível salvar o time.', 'error');
-                }
-              }}
-              className={styles.saveButton}
-            >
+            <button onClick={handleSave} className={styles.saveButton}>
               Salvar
             </button>
             <button onClick={closeModal} className={styles.cancelButton}>

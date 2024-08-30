@@ -1,4 +1,3 @@
-// src/player/player.controller.ts
 import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { PlayerService } from './player.service';
 import { CreatePlayerDto } from './dto/create-player.dto';

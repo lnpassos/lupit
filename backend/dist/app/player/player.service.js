@@ -18,13 +18,20 @@ let PlayerService = class PlayerService {
     }
     async create(createPlayerDto) {
         const { name, age, teamId } = createPlayerDto;
-        return this.prisma.player.create({
+        const player = await this.prisma.player.create({
             data: {
                 name,
                 age,
                 teamId: parseInt(teamId.toString(), 10),
             },
         });
+        await this.prisma.team.update({
+            where: { id: player.teamId },
+            data: {
+                updatedDt: new Date(),
+            },
+        });
+        return player;
     }
     async findAll() {
         return this.prisma.player.findMany({
@@ -42,10 +49,19 @@ let PlayerService = class PlayerService {
         });
     }
     async update(id, updatePlayerDto) {
-        return this.prisma.player.update({
+        const updatedPlayer = await this.prisma.player.update({
             where: { id },
             data: updatePlayerDto,
         });
+        if (updatePlayerDto.teamId) {
+            await this.prisma.team.update({
+                where: { id: updatePlayerDto.teamId },
+                data: {
+                    updatedDt: new Date(),
+                },
+            });
+        }
+        return updatedPlayer;
     }
     async remove(id) {
         return this.prisma.player.delete({

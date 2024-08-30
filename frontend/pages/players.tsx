@@ -41,7 +41,7 @@ const PlayersPage: React.FC<PlayersPageProps> = ({ initialPlayers, error }) => {
       text: 'Você não poderá reverter isso!',
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
+      confirmButtonColor: '#6a0dad',
       cancelButtonColor: '#d33',
       confirmButtonText: 'Sim, delete!'
     });
@@ -80,7 +80,7 @@ const PlayersPage: React.FC<PlayersPageProps> = ({ initialPlayers, error }) => {
               <th>Nome</th>
               <th>Idade</th>
               <th>Time</th>
-              <th>Ações</th> {/* Nova coluna de ações */}
+              <th>Ações</th> 
             </tr>
           </thead>
           <tbody className={styles.tableBody}>
