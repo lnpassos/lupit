@@ -45,11 +45,11 @@ ________________________________________________________________________________
 
 # Endpoints
 
-`http://localhost:3000/` - Home
-`http://localhost:3000/create-team` - Criar novo Time
-`http://localhost:3000/create-player` - Criar novo Jogador
-`http://localhost:3000/teams` - Mostra todos os Times criados.
-`http://localhost:3000/players` - Mostra todos os Jogadores criados.
-`http://localhost:3000/teams/8` - Mostra detalhes de um Time em específico.
+`http://localhost:3000/` - Home<br>
+`http://localhost:3000/create-team` - Criar novo Time<br>
+`http://localhost:3000/create-player` - Criar novo Jogador<br>
+`http://localhost:3000/teams` - Mostra todos os Times criados.<br>
+`http://localhost:3000/players` - Mostra todos os Jogadores criados.<br>
+`http://localhost:3000/teams/8` - Mostra detalhes de um Time em específico.<br>
 `http://localhost:3000/players/id` - Mostra detalhes de um Jogador em específico.
 
