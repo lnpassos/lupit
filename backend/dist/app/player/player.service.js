@@ -41,6 +41,17 @@ let PlayerService = class PlayerService {
             },
         });
     }
+    async update(id, updatePlayerDto) {
+        return this.prisma.player.update({
+            where: { id },
+            data: updatePlayerDto,
+        });
+    }
+    async remove(id) {
+        return this.prisma.player.delete({
+            where: { id },
+        });
+    }
 };
 exports.PlayerService = PlayerService;
 exports.PlayerService = PlayerService = __decorate([

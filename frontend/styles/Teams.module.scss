@@ -3,7 +3,6 @@ $text-color: #ffffff;
 $input-color: #ddd;
 $border-color: #e0e0e0; 
 
-
 .container {
     display: flex;
     flex-direction: column;
@@ -24,7 +23,6 @@ $border-color: #e0e0e0;
     max-width: 1200px;
     border-collapse: collapse;
     margin-top: 20px;
-    background-color: $text-color;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     overflow: hidden;
@@ -32,7 +30,7 @@ $border-color: #e0e0e0;
   
   .tableHeader {
     background-color: $primary-color;
-    color: $text-color;
+    color: #ffffff;
   }
   
   .tableHeader th, .tableBody td {
@@ -40,31 +38,9 @@ $border-color: #e0e0e0;
     text-align: left;
     font-size: 20px;
   }
-
-  .tableHeader th:nth-child(3) {
-    position: absolute;
-    left: 49.3%;
-  }
-
-  .tableHeader th:nth-child(4) {
-    position: absolute;
-    left: 60%;
-  }
-
-
-.tableBody td:nth-child(3) {
-    position: absolute;
-    left: 49.9%;
-  }
-
-  .tableBody td:nth-child(4) {
-    position: absolute;
-    left: 59.9%;
-  }
   
   .tableHeader th {
     font-weight: bold;
-    border-bottom: 2px solid $primary-color;
   }
   
   .tableBody tr {
@@ -83,17 +59,16 @@ $border-color: #e0e0e0;
     color: $primary-color;
     text-decoration: none;
     font-weight: bold;
-    font-size: 20px;
-    transition: all 0.3s ease;
   }
   
   .link:hover {
     text-decoration: underline;
   }
   
-  .error {
-    color: rgb(211, 0, 0);
-    font-weight: bold;
+  .noTeams {
     text-align: center;
+    color: #666;
+    font-style: italic;
+    padding: 20px;
   }
   

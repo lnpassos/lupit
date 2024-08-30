@@ -1,0 +1,54 @@
+// Definição das cores
+$primary-color: #6a0dad;
+$secondary-color: #4b0082;
+$text-color: #ffffff;
+$error-color: #e74c3c;
+$success-color: #2ecc71;
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.title {
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+  color: $primary-color;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.label {
+  font-weight: bold;
+  color: $secondary-color;
+}
+
+.input {
+  padding: 10px;
+  border: 1px solid $secondary-color;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.saveButton {
+  background-color: $primary-color;
+  color: $text-color;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.saveButton:hover {
+  background-color: $secondary-color;
+}

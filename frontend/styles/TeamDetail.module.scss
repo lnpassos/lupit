@@ -1,0 +1,202 @@
+// Definição das cores
+$primary-color: #6a0dad;
+$secondary-color: #4b0082;
+$text-color: #ffffff;
+$error-color: #e74c3c;
+$success-color: #2ecc71;
+
+// Container principal
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+// Título do time
+.title {
+  font-size: 5rem;
+  color: $secondary-color;
+  margin-bottom: 1rem;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+// Informações do time
+.info {
+  margin-bottom: 2rem;
+  p {
+    font-size: 1.125rem;
+    color: black;
+    strong {
+      color: $primary-color;
+    }
+  }
+}
+
+// Subtítulo da tabela
+.subtitle {
+  font-size: 1.75rem;
+  color: black;
+  margin-bottom: 1rem;
+}
+
+// Estilo da tabela
+.table {
+  width: 100%;
+  max-width: 500px;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: $text-color;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.tableHeader {
+    background-color: $primary-color;
+    color: $text-color;
+  }
+  
+  .tableHeader th, .tableBody td {
+    padding: 15px;
+    font-size: 1.5rem; // Ajustado o tamanho da fonte para melhor legibilidade
+  }
+
+  .tableBody tr {
+    transition: background-color 0.3s ease;
+    text-align: center;
+  }
+  
+  .tableBody tr:nth-child(even) {
+    background-color: #f3f3f3;
+  }
+  
+  .tableBody tr:hover {
+    background-color: #e4e2e2;
+  }
+  
+  .actions {
+    display: flex;
+    position: relative;
+    left: 40px;
+    align-items: center; // Centraliza verticalmente
+    cursor: pointer; // Adiciona um cursor de ponteiro ao passar sobre os ícones
+  }
+  
+  .actions span {
+    margin: 0 5px; // Adiciona espaçamento entre os ícones
+    font-size: 1.5rem; // Ajusta o tamanho dos ícones
+    color: $primary-color; // Define a cor dos ícones
+  }
+  
+  .actions span:hover {
+    color: $secondary-color; // Cor dos ícones ao passar o mouse sobre eles
+  }
+
+.editBtn, .deleteBtn {
+  background: none;
+  border: none;
+  color: $text-color;
+  cursor: pointer;
+  font-size: 1.25rem;
+  transition: color 0.3s ease;
+}
+
+.editBtn:hover {
+  color: $success-color;
+}
+
+.deleteBtn {
+  color: $error-color;
+  &:hover {
+    color: $error-color;
+  }
+}
+
+// Mensagem quando não há jogadores
+.void {
+  color: black;
+  font-size: 1.875rem; // Ajustado o tamanho da fonte para melhor visualização
+  font-weight: 500;
+}
+
+
+
+
+
+
+
+/***********  MODAL *********/
+
+.modal {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    width: 400px;
+    max-width: 90%;
+    margin: auto;
+  }
+  
+  .overlay {
+    background-color: rgba(0, 0, 0, 0.75);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .label {
+    font-weight: bold;
+    color: $secondary-color;
+  }
+  
+  .input {
+    padding: 10px;
+    border: 1px solid $secondary-color;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+  
+  .saveButton {
+    background-color: $primary-color;
+    color: $text-color;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .cancelButton {
+    background-color: $error-color;
+    color: $text-color;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .saveButton:hover {
+    background-color: $secondary-color;
+  }
+  
+  .cancelButton:hover {
+    background-color: darken($error-color, 10%);
+  }
+  
+
+  /***********  MODAL *********/
