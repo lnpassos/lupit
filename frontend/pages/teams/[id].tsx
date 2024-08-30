@@ -1,11 +1,11 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import Header from '../../components/Header';
-import styles from '../../styles/TeamDetail.module.scss';
-import { formatDateToBrazilian } from '../../utils/data'; // Importar função para formatação de datas
-import Swal from 'sweetalert2'; // Importar SweetAlert2
-import { FaEdit, FaTrash } from 'react-icons/fa'; // Importar ícones de editar e excluir
-import Modal from 'react-modal'; // Importar React Modal
+import styles from '../../styles/TeamDetail.module.scss'; 
+import { formatDateToBrazilian } from '../../utils/data'; 
+import Swal from 'sweetalert2'; 
+import { FaEdit, FaTrash } from 'react-icons/fa';
+import Modal from 'react-modal'; 
 
 interface Player {
   id: number;
@@ -161,10 +161,10 @@ const TeamDetail = () => {
                 <td>{player.name}</td>
                 <td className={styles.actions}>
                   <span onClick={() => openModal(player)}>
-                    <FaEdit />
+                    <FaEdit /> {/* Ícone de editar */}
                   </span>
                   <span onClick={() => handleDelete(player.id)}>
-                    <FaTrash />
+                    <FaTrash /> {/* Ícone de excluir */}
                   </span>
                 </td>
               </tr>

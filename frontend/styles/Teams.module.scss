@@ -1,74 +1,164 @@
-$primary-color: #6a0dad; 
-$text-color: #ffffff; 
-$input-color: #ddd;
-$border-color: #e0e0e0; 
+// Definição das cores
+$primary-color: #6a0dad;
+$secondary-color: #4b0082;
+$text-color: #ffffff;
+$error-color: #e74c3c;
+$success-color: #2ecc71;
+
 
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-  }
-  
-  .title {
-    color: $primary-color;
-    font-size: 2rem;
-    margin-bottom: 20px;
-    text-align: center;
-  }
-  
-  .table {
-    width: 100%;
-    max-width: 1200px;
-    border-collapse: collapse;
-    margin-top: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    overflow: hidden;
-  }
-  
-  .tableHeader {
-    background-color: $primary-color;
-    color: #ffffff;
-  }
-  
-  .tableHeader th, .tableBody td {
-    padding: 15px;
-    text-align: left;
-    font-size: 20px;
-  }
-  
-  .tableHeader th {
-    font-weight: bold;
-  }
-  
-  .tableBody tr {
-    transition: background-color 0.3s ease;
-  }
-  
-  .tableBody tr:nth-child(even) {
-    background-color: #f3f3f3;
-  }
-  
-  .tableBody tr:hover {
-    background-color: #e4e2e2;
-  }
-  
-  .link {
-    color: $primary-color;
-    text-decoration: none;
-    font-weight: bold;
-  }
-  
-  .link:hover {
-    text-decoration: underline;
-  }
-  
-  .noTeams {
-    text-align: center;
-    color: #666;
-    font-style: italic;
-    padding: 20px;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.title {
+  color: $primary-color;
+  font-size: 2rem;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.table {
+  width: 100%;
+  max-width: 1200px;
+  border-collapse: collapse;
+  margin-top: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.tableHeader {
+  background-color: $primary-color;
+  color: #ffffff;
+}
+
+.tableHeader th, .tableBody td {
+  padding: 15px;
+  text-align: left;
+  font-size: 20px;
+}
+
+.tableHeader th {
+  font-weight: bold;
+}
+
+.tableBody tr {
+  transition: background-color 0.3s ease;
+}
+
+.tableBody tr:nth-child(even) {
+  background-color: #f3f3f3;
+}
+
+.tableBody tr:hover {
+  background-color: #e4e2e2;
+}
+
+.link {
+  color: $primary-color;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 10px;
+  position: relative;
+  left: -10px;
+  justify-content: center;
+  font-size: 1.5rem; // Ajuste o tamanho do ícone
+  color: $primary-color; // Cor do ícone
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.icon:hover {
+  color: darken($primary-color, 10%); // Cor do ícone ao passar o mouse
+}
+
+.noTeams {
+  text-align: center;
+  color: #666;
+  font-style: italic;
+  padding: 20px;
+}
+
+// Estilo para o modal
+.modal {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  width: 400px;
+  max-width: 90%;
+  margin: auto;
+}
+
+.overlay {
+  background-color: rgba(0, 0, 0, 0.75);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.label {
+  font-weight: bold;
+  color: $secondary-color;
+}
+
+.input {
+  padding: 10px;
+  border: 1px solid $secondary-color;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.saveButton {
+  background-color: $primary-color;
+  color: $text-color;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.cancelButton {
+  background-color: $error-color;
+  color: $text-color;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.saveButton:hover {
+  background-color: $secondary-color;
+}
+
+.cancelButton:hover {
+  background-color: darken($error-color, 10%);
+}
+

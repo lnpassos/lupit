@@ -33,6 +33,20 @@ let TeamController = class TeamController {
         }
         return this.teamService.findOne(numericId);
     }
+    async update(id, updateTeamDto) {
+        const numericId = parseInt(id, 10);
+        if (isNaN(numericId)) {
+            throw new Error('ID inválido');
+        }
+        return this.teamService.update(numericId, updateTeamDto);
+    }
+    async remove(id) {
+        const numericId = parseInt(id, 10);
+        if (isNaN(numericId)) {
+            throw new Error('ID inválido');
+        }
+        return this.teamService.remove(numericId);
+    }
 };
 exports.TeamController = TeamController;
 __decorate([
@@ -55,6 +69,21 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], TeamController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Put)(':id'),
+    __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, create_team_dto_1.CreateTeamDto]),
+    __metadata("design:returntype", Promise)
+], TeamController.prototype, "update", null);
+__decorate([
+    (0, common_1.Delete)(':id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], TeamController.prototype, "remove", null);
 exports.TeamController = TeamController = __decorate([
     (0, common_1.Controller)('teams'),
     __metadata("design:paramtypes", [team_service_1.TeamService])

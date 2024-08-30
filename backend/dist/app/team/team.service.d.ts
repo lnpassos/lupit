@@ -7,4 +7,6 @@ export declare class TeamService {
     create(createTeamDto: CreateTeamDto): Promise<Team>;
     findAll(): Promise<Team[]>;
     findOne(id: number): Promise<Team>;
+    update(id: number, updateTeamDto: CreateTeamDto): Promise<Team>;
+    remove(id: number): Promise<void>;
 }

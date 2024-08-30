@@ -25,14 +25,42 @@ let TeamService = class TeamService {
         return this.prisma.team.findMany();
     }
     async findOne(id) {
-        const numericId = parseInt(id, 10);
-        if (isNaN(numericId)) {
-            throw new Error('ID inválido');
-        }
         return this.prisma.team.findUnique({
-            where: { id: numericId },
+            where: { id },
             include: { players: true },
         });
+    }
+    async update(id, updateTeamDto) {
+        try {
+            const existingTeam = await this.prisma.team.findUnique({
+                where: { id },
+            });
+            if (!existingTeam) {
+                throw new Error('Time não encontrado');
+            }
+            return this.prisma.team.update({
+                where: { id },
+                data: Object.assign(Object.assign({}, updateTeamDto), { updatedDt: new Date() }),
+            });
+        }
+        catch (error) {
+            console.error(`Error updating team with ID ${id}:`, error);
+            throw new Error(`Unable to update team with ID ${id}`);
+        }
+    }
+    async remove(id) {
+        try {
+            await this.prisma.player.deleteMany({
+                where: { teamId: id },
+            });
+            await this.prisma.team.delete({
+                where: { id },
+            });
+        }
+        catch (error) {
+            console.error(`Error removing team with ID ${id}:`, error);
+            throw new Error(`Unable to remove team with ID ${id}`);
+        }
     }
 };
 exports.TeamService = TeamService;

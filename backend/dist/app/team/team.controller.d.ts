@@ -21,4 +21,11 @@ export declare class TeamController {
         createdDt: Date;
         updatedDt: Date;
     }>;
+    update(id: string, updateTeamDto: CreateTeamDto): Promise<{
+        id: number;
+        name: string;
+        createdDt: Date;
+        updatedDt: Date;
+    }>;
+    remove(id: string): Promise<void>;
 }

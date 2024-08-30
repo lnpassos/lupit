@@ -1,5 +1,6 @@
 // src/team/team.controller.ts
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+
+import { Body, Controller, Get, Param, Post, Put, Delete } from '@nestjs/common';
 import { TeamService } from './team.service';
 import { CreateTeamDto } from './dto/create-team.dto';
 
@@ -18,11 +19,29 @@ export class TeamController {
   }
 
   @Get(':id')
-  async findOne(@Param('id') id: string) { // id é recebido como string
-    const numericId = parseInt(id, 10); // Converte o id para número
+  async findOne(@Param('id') id: string) {
+    const numericId = parseInt(id, 10);
     if (isNaN(numericId)) {
       throw new Error('ID inválido');
     }
     return this.teamService.findOne(numericId);
+  }
+
+  @Put(':id')
+  async update(@Param('id') id: string, @Body() updateTeamDto: CreateTeamDto) {
+    const numericId = parseInt(id, 10);
+    if (isNaN(numericId)) {
+      throw new Error('ID inválido');
+    }
+    return this.teamService.update(numericId, updateTeamDto);
+  }
+
+  @Delete(':id')
+  async remove(@Param('id') id: string) {
+    const numericId = parseInt(id, 10);
+    if (isNaN(numericId)) {
+      throw new Error('ID inválido');
+    }
+    return this.teamService.remove(numericId);
   }
 }
