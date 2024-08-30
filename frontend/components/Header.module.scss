@@ -1,0 +1,30 @@
+$primary-color: #6a0dad; // Cor roxa
+$text-color: #ffffff; // Cor branca
+
+.header {
+  background-color: $primary-color;
+  padding: 1rem;
+  position: fixed; /* Garante que o header esteja fixo no topo */
+  top: 0;
+  left: 0;
+  width: 100%; /* Garante que o header ocupe toda a largura da tela */
+  z-index: 1000; /* Garante que o header esteja acima de outros conteúdos */
+}
+
+.nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.link {
+  color: $text-color;
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: bold;
+  transition: color 0.3s;
+
+  &:hover {
+    color: lighten($text-color, 20%);
+  }
+}
