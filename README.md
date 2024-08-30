@@ -3,7 +3,7 @@ Após fazer o download do projeto via `.zip` ou `git clone`, siga os passos abai
 
 1. **Entre na pasta `Frontend`:**
 
-   cd Frontend<br>
+   cd Frontend<br><br>
    Instale as dependências do projeto:<br>
    npm install
    
