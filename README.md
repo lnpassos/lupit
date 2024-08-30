@@ -5,21 +5,21 @@ Após fazer o download do projeto via `.zip` ou `git clone`, siga os passos abai
 
    cd Frontend<br><br>
    Instale as dependências do projeto:<br>
-   npm install
+   `npm install`
    
    Inicie o servidor de desenvolvimento:<br>
-   npm run dev
+   `npm run dev`
    
 ____________________________________________________________________________________
 
 2. **Entre na pasta `Backend`:**
    
-   cd ../Backend
-   Instale as dependências do projeto:
-   npm install
+   cd ../Backend<br><br>
+   Instale as dependências do projeto:<br>
+   `npm install`
    
-   Inicie o servidor:
-   npm run start
+   Inicie o servidor:<br>
+   `npm run start`
    
 ____________________________________________________________________________________
 
