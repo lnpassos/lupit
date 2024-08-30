@@ -21,3 +21,22 @@ ________________________________________________________________________________
    
    Inicie o servidor:
    npm run start
+   
+____________________________________________________________________________________
+
+# Validações
+
+Não há muitas para tornar a aplicação mais rápida, alguns deles são:
+Nome: Apenas STR.
+Idade: Apenas INT.
+Edit Jogador: Ele não pode ficar sem um time.
+
+____________________________________________________________________________________
+
+# Features
+
+Utilizei bibliotecas React / Next no Front-end para tornar algo legal visualmente pro usuário,
+uma feature apenas como simulação é o `Spinner de validação`, simulando um `request` para o backend,
+fazendo as verificações necessárias, aguardando o `response` para criar o usuário.
+
+`Não há uma validação em volta disso, apenas como simulação`
