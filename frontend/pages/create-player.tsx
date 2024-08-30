@@ -3,6 +3,7 @@ import axios from 'axios';
 import Header from '../components/Header';
 import Button from '../components/Button';
 import Swal from 'sweetalert2';
+import { Oval } from 'react-loader-spinner'; // Importa o componente de loading
 import styles from '../styles/CreatePlayer.module.scss'; // Certifique-se de que este arquivo existe e está configurado
 
 const CreatePlayer = () => {
@@ -11,6 +12,7 @@ const CreatePlayer = () => {
   const [teamId, setTeamId] = useState<number | string>('');
   const [teams, setTeams] = useState<{ id: number; name: string }[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false); // Novo estado para o loading
 
   useEffect(() => {
     const fetchTeams = async () => {
@@ -31,8 +33,12 @@ const CreatePlayer = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true); // Ativa o loading
+
     try {
+      await new Promise((resolve) => setTimeout(resolve, 2000)); // Simula um atraso de 2 segundos
       await axios.post('http://localhost:3001/players', { name, age, teamId });
+
       setName('');
       setAge(0);
       setTeamId('');
@@ -50,6 +56,8 @@ const CreatePlayer = () => {
         text: 'Erro ao criar jogador!',
       });
       setError('Erro ao criar jogador!');
+    } finally {
+      setLoading(false); // Desativa o loading após o atraso
     }
   };
 
@@ -67,6 +75,7 @@ const CreatePlayer = () => {
             onChange={(e) => setName(e.target.value)}
             required
             className={styles.input}
+            disabled={loading} // Desativa o input durante o loading
           />
         </label>
         <label className={styles.label}>
@@ -77,6 +86,7 @@ const CreatePlayer = () => {
             onChange={(e) => setAge(parseInt(e.target.value))}
             required
             className={styles.input}
+            disabled={loading} // Desativa o input durante o loading
           />
         </label>
         <label className={styles.label}>
@@ -86,6 +96,7 @@ const CreatePlayer = () => {
             onChange={(e) => setTeamId(e.target.value)}
             required
             className={styles.select}
+            disabled={loading} // Desativa o select durante o loading
           >
             <option value="">Selecione um time</option>
             {teams.map((team) => (
@@ -95,7 +106,24 @@ const CreatePlayer = () => {
             ))}
           </select>
         </label>
-        <Button type="submit">Criar Jogador</Button>
+        <Button type="submit" disabled={loading}>Criar Jogador</Button>
+        {loading && (
+          <div className={styles.loading}>
+            <Oval
+              height={80}
+              width={80}
+              color="#00BFFF"
+              wrapperStyle={{}}
+              wrapperClass=""
+              visible={true}
+              ariaLabel='oval-loading'
+              secondaryColor="#00BFFF"
+              strokeWidth={2}
+              strokeWidthSecondary={2}
+            />
+            <p>Creating player...</p>
+          </div>
+        )}
       </form>
     </div>
   );

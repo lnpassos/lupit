@@ -82,3 +82,17 @@ $border-color: #e0e0e0;
   outline: none; 
 }
 
+/* Spinner simulando websocket*/
+
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.loading p {
+  margin-top: 10px;
+  font-size: 16px;
+  color: #333;
+}
