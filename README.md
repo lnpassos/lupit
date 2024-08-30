@@ -1,5 +1,4 @@
 # DOCUMENTAÇÃO
-
 Após fazer o download do projeto via `.zip` ou `git clone`, siga os passos abaixo:
 
 1. **Entre na pasta `Frontend`:**
@@ -25,7 +24,6 @@ ________________________________________________________________________________
 ____________________________________________________________________________________
 
 # Validações
-
 Não há muitas para tornar a aplicação mais rápida, alguns deles são:
 Nome: Apenas STR.
 Idade: Apenas INT.
@@ -33,10 +31,10 @@ Edit Jogador: Ele não pode ficar sem um time.
 
 ____________________________________________________________________________________
 
-# Features
 ## IMPORTANT! 
 ## Para navegar entre os Endpoints, apenas utilizei o menu fixo do Header, sendo o titulo: `Lupit`.
 
+# Features
 Utilizei bibliotecas React / Next no Front-end para tornar algo legal visualmente pro usuário,
 uma feature apenas como simulação é o `Spinner de validação`, simulando um `request` para o backend,
 fazendo as verificações necessárias, aguardando o `response` para criar o usuário.
