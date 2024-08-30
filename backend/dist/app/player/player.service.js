@@ -17,8 +17,13 @@ let PlayerService = class PlayerService {
         this.prisma = prisma;
     }
     async create(createPlayerDto) {
+        const { name, age, teamId } = createPlayerDto;
         return this.prisma.player.create({
-            data: createPlayerDto,
+            data: {
+                name,
+                age,
+                teamId: parseInt(teamId.toString(), 10),
+            },
         });
     }
     async findAll() {
@@ -29,12 +34,8 @@ let PlayerService = class PlayerService {
         });
     }
     async findOne(id) {
-        const numericId = parseInt(id, 10);
-        if (isNaN(numericId)) {
-            throw new Error('ID inválido');
-        }
         return this.prisma.player.findUnique({
-            where: { id: numericId },
+            where: { id },
             include: {
                 team: true,
             },

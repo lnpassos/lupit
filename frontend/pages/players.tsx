@@ -2,6 +2,7 @@
 import { GetServerSideProps } from 'next';
 import Link from 'next/link';
 import Header from '../components/Header';
+import styles from '../styles/Players.module.scss';  // Importa o SCSS
 
 interface Team {
   id: number;
@@ -22,29 +23,31 @@ interface PlayersPageProps {
 
 const PlayersPage: React.FC<PlayersPageProps> = ({ players, error }) => {
   if (error) {
-    return <div>
+    return (
+      <div className={styles.container}>
         <Header />
-        Error: {error}
-        </div>;
+        <div className={styles.error}>Error: {error}</div>
+      </div>
+    );
   }
 
   return (
-    <div>
+    <div className={styles.container}>
       <Header />
-      <h1>All Players</h1>
+      <h1 className={styles.title}>Tabela de Jogadores</h1>
       {players.length === 0 ? (
-        <p>No players found.</p>
+        <p>Nenhum Jogador Encontrado</p>
       ) : (
-        <table>
-          <thead>
+        <table className={styles.table}>
+          <thead className={styles.tableHeader}>
             <tr>
               <th>ID</th>
-              <th>Name</th>
-              <th>Age</th>
-              <th>Team</th>
+              <th>Nome</th>
+              <th>Idade</th>
+              <th>Time</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className={styles.tableBody}>
             {players.map(player => (
               <tr key={player.id}>
                 <td>{player.id}</td>
@@ -52,7 +55,7 @@ const PlayersPage: React.FC<PlayersPageProps> = ({ players, error }) => {
                 <td>{player.age}</td>
                 <td>
                   {player.team ? (
-                    <Link href={`/teams/${player.team.id}`}>
+                    <Link href={`/teams/${player.team.id}`} className={styles.link}>
                       {player.team.name}
                     </Link>
                   ) : (

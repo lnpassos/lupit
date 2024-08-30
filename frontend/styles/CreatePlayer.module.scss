@@ -1,0 +1,61 @@
+$primary-color: #6a0dad; 
+$text-color: #ffffff; 
+$input-color: #ddd;
+$border-color: #e0e0e0; 
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.title {
+  color: $primary-color; 
+  font-size: 2.3rem; 
+  margin-bottom: 20px;
+  font-weight: 600; 
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; 
+  max-width: 600px;
+  width: 100%;
+  background: $text-color;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid $border-color;
+}
+
+.label {
+  font-weight: 800;
+  margin-left: 2px;
+  margin-bottom: 5px; 
+  color: $primary-color;
+}
+
+.input, .select {
+  padding: 12px;
+  border: 1px solid $input-color;
+  border-radius: 6px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+  margin-left: 20px;
+  width: 84%;
+}
+
+.form label:last-of-type .select {
+  margin-left: 26px;
+  width: 88.5%;
+}
+
+
+.input:focus, .select:focus {
+  border-color: $primary-color;
+  outline: none; 
+}
+

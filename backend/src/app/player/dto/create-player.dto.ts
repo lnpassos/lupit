@@ -11,5 +11,5 @@ export class CreatePlayerDto {
   age: number;
 
   @IsInt()
-  teamId: number;  // Deve ser um número
+  teamId: number;
 }

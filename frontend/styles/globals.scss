@@ -1,9 +1,23 @@
-/* Importa a fonte Poppins do Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+$primary-color: #6a0dad; // Cor roxa
 
-/* Aplica a fonte Poppins globalmente */
 body {
   font-family: 'Poppins', sans-serif;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+
+h1 {
+  color: $primary-color;
+  font-size: 2.3rem; 
+  margin-top: 0; /* Remove margem superior do h1 */
+  padding-top: 20px; /* Adiciona um pouco de padding no topo para posicionar melhor */
+}
+
+h2 {
+  color: $primary-color;
+  font-size: 2rem; 
+  margin-top: 0; /* Remove margem superior do h2 */
+  padding-top: 10px; /* Adiciona padding no topo para ajustar a posição */
 }

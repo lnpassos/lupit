@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Header from '../components/Header';
+import Button from '../components/Button';
+import Swal from 'sweetalert2';
+import styles from '../styles/CreatePlayer.module.scss'; // Certifique-se de que este arquivo existe e está configurado
 
 const CreatePlayer = () => {
   const [name, setName] = useState('');
@@ -8,7 +11,6 @@ const CreatePlayer = () => {
   const [teamId, setTeamId] = useState<number | string>('');
   const [teams, setTeams] = useState<{ id: number; name: string }[]>([]);
   const [error, setError] = useState<string | null>(null);
-  const [success, setSuccess] = useState<string | null>(null); // Novo estado para sucesso
 
   useEffect(() => {
     const fetchTeams = async () => {
@@ -16,7 +18,11 @@ const CreatePlayer = () => {
         const res = await axios.get('http://localhost:3001/teams');
         setTeams(res.data);
       } catch (err) {
-        setError('Failed to fetch teams. Please try again later.');
+        Swal.fire({
+          icon: 'error',
+          title: 'Erro',
+          text: 'Falha ao buscar times. Tente novamente mais tarde.',
+        });
         console.error('Failed to fetch teams:', err);
       }
     };
@@ -30,46 +36,56 @@ const CreatePlayer = () => {
       setName('');
       setAge(0);
       setTeamId('');
-      setSuccess('Jogador criado com sucesso!');
-      setError(null); // Limpa a mensagem de erro
+      Swal.fire({
+        icon: 'success',
+        title: 'Sucesso!',
+        text: 'Jogador criado com sucesso!',
+      });
+      setError(null);
     } catch (error) {
       console.error('Failed to create player:', error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Erro',
+        text: 'Erro ao criar jogador!',
+      });
       setError('Erro ao criar jogador!');
-      setSuccess(null); // Limpa a mensagem de sucesso
     }
   };
 
   return (
-    <div>
+    <div className={styles.container}>
       <Header />
-      <h1>Criar um Jogador</h1>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      {success && <p style={{ color: 'green' }}>{success}</p>}
-      <form onSubmit={handleSubmit}>
-        <label>
+      <h1 className={styles.title}>Criar Novo Jogador</h1>
+      {error && <p className={styles.error}>{error}</p>}
+      <form onSubmit={handleSubmit} className={styles.form}>
+        <label className={styles.label}>
           Nome:
           <input
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
+            className={styles.input}
           />
         </label>
-        <label>
+        <label className={styles.label}>
           Idade:
           <input
             type="number"
             value={age}
             onChange={(e) => setAge(parseInt(e.target.value))}
             required
+            className={styles.input}
           />
         </label>
-        <label>
+        <label className={styles.label}>
           Time:
           <select
             value={teamId}
             onChange={(e) => setTeamId(e.target.value)}
             required
+            className={styles.select}
           >
             <option value="">Selecione um time</option>
             {teams.map((team) => (
@@ -79,7 +95,7 @@ const CreatePlayer = () => {
             ))}
           </select>
         </label>
-        <button type="submit">Criar Jogador</button>
+        <Button type="submit">Criar Jogador</Button>
       </form>
     </div>
   );

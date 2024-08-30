@@ -9,8 +9,14 @@ export class PlayerService {
   constructor(private prisma: PrismaService) {}
 
   async create(createPlayerDto: CreatePlayerDto): Promise<Player> {
+    // Certifique-se de que teamId é um número
+    const { name, age, teamId } = createPlayerDto;
     return this.prisma.player.create({
-      data: createPlayerDto,
+      data: {
+        name,
+        age,
+        teamId: parseInt(teamId.toString(), 10),  // Converte para número
+      },
     });
   }
 
@@ -23,12 +29,8 @@ export class PlayerService {
   }
 
   async findOne(id: number): Promise<Player | null> {
-    const numericId = parseInt(id as unknown as string, 10); // Converte o id para número
-    if (isNaN(numericId)) {
-      throw new Error('ID inválido');
-    }
     return this.prisma.player.findUnique({
-      where: { id: numericId },
+      where: { id },
       include: {
         team: true,  // Inclui o time associado ao jogador
       },
