@@ -6,8 +6,7 @@ const Home = () => (
   <div className={styles.container}>
     <Header />
     <main className={styles.mainContent}>
-      <h1>Olá, Seja muito bem-vindo!</h1>
-      <h2>O que deseja!?</h2>
+      <h1>FutLovers.io</h1>
       <div className={styles.buttonContainer}>
         <Button href="/create-team">Eu quero criar um Novo Time</Button>
         <Button href="/create-player">Eu quero criar um Novo Jogador</Button>

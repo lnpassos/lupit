@@ -1,33 +1,33 @@
-/* Estiliza o container da página para garantir que o Header está fixo no topo */
 .container {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-  }
-  
-  /* Estiliza a área principal da página, empurrando-a para baixo do Header */
-  .mainContent {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    text-align: center;
-    margin-top: 4rem; /* Adiciona margem superior para evitar sobreposição */
-  }
-  
-  /* Estiliza a container dos botões para ter o layout apropriado */
-  .buttonContainer {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-  }
-  
-  /* Estiliza os botões para ter o mesmo tamanho e aparência consistente */
-  .buttonContainer > * {
-    flex: 1 1 calc(50% - 20px); /* Dois botões por linha, considerando o gap */
-    max-width: 400px; /* Limita a largura máxima dos botões */
-  }
-  
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-image: url('https://static.vecteezy.com/ti/vetor-gratis/p1/2222293-ilustracao-em-de-fundo-abstrato-de-bola-de-futebol-em-chamas-vetor.jpg');
+  background-size: cover; /* Cobre todo o contêiner */
+  background-position: center; /* Centraliza a imagem de fundo */
+  background-repeat: no-repeat; /* Evita repetição da imagem */
+}
+
+.mainContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  text-align: center;
+  margin-top: 4rem; /* Adiciona margem superior para evitar sobreposição */
+  background-color: rgba(255, 255, 255, 0.7); /* Adiciona um fundo semi-transparente para legibilidade */
+}
+
+.buttonContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.buttonContainer > * {
+  flex: 1 1 calc(50% - 20px); /* Dois botões por linha, considerando o gap */
+  max-width: 400px; /* Limita a largura máxima dos botões */
+}

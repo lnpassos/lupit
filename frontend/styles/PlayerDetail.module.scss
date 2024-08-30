@@ -1,0 +1,188 @@
+// Definição das cores
+$primary-color: #6a0dad;
+$secondary-color: #4b0082;
+$title-color: rgb(59, 2, 77);
+$text-color: #ffffff;
+$error-color: #e74c3c;
+$success-color: #2ecc71;
+
+// Container principal
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-image: url('https://static.vecteezy.com/ti/vetor-gratis/p1/2222293-ilustracao-em-de-fundo-abstrato-de-bola-de-futebol-em-chamas-vetor.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  z-index: 0;
+}
+
+.container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.7); /* Adiciona uma camada semi-transparente */
+  z-index: 1;
+}
+
+// Título do jogador
+.title {
+  font-size: 2.3rem;
+  color: $title-color;
+  margin-bottom: 1rem;
+  z-index: 50;
+}
+
+// Card do jogador
+.card {
+  background-color: $text-color;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
+  position: relative;
+  z-index: 50;
+}
+
+// Detalhes do jogador
+.playerDetails {
+  margin-bottom: 20px;
+  font-size: 16px;
+
+  strong {
+    color: $secondary-color; // Cor primária para os labels
+  }
+}
+
+// Botão de editar
+.editButton {
+  background-color: $primary-color;
+  color: $text-color;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-right: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.editButton:hover {
+  background-color: $secondary-color;
+}
+
+// Botão de excluir
+.deleteButton {
+  background-color: $error-color;
+  color: $text-color;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.deleteButton:hover {
+  background-color: darken($error-color, 10%);
+}
+
+// Adiciona o estilo para o botão de voltar
+.backButton {
+    color: $primary-color;
+    font-size: 16px;
+    text-decoration: none;
+    margin-bottom: 1rem; // Espaço entre o botão e o título
+    text-align: center;
+    cursor: pointer;
+    font-weight: 800;
+    transition: color 0.3s ease;
+    position: relative;
+    top: 8px;
+
+  }
+  
+  .backButton:hover {
+    color: darken($primary-color, 10%);
+  }
+
+// Modal
+.overlay {
+  background-color: rgba(0, 0, 0, 0.75);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.modal {
+  background-color: $text-color;
+  padding: 20px;
+  border-radius: 8px;
+  width: 400px;
+  max-width: 90%;
+  position: relative;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.label {
+  font-weight: bold;
+  color: $secondary-color;
+}
+
+.input {
+  padding: 10px;
+  border: 1px solid $secondary-color;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.saveButton {
+  background-color: $primary-color;
+  color: $text-color;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-right: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.saveButton:hover {
+  background-color: $secondary-color;
+}
+
+.cancelButton {
+  background-color: $error-color;
+  color: $text-color;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.cancelButton:hover {
+  background-color: darken($error-color, 10%);
+}

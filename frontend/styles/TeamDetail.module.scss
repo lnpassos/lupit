@@ -1,6 +1,7 @@
 // Definição das cores
 $primary-color: #6a0dad;
 $secondary-color: #4b0082;
+$title-color: rgb(59, 2, 77);
 $text-color: #ffffff;
 $error-color: #e74c3c;
 $success-color: #2ecc71;
@@ -12,14 +13,60 @@ $success-color: #2ecc71;
     align-items: center;
     justify-content: center;
     min-height: 100vh;
+    background-image: url('https://static.vecteezy.com/ti/vetor-gratis/p1/2222293-ilustracao-em-de-fundo-abstrato-de-bola-de-futebol-em-chamas-vetor.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    z-index: 0;
 }
+
+.container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.7); /* Adiciona uma camada semi-transparente */
+  z-index: 1;
+}
+
+// Card do time
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 800px;
+  margin: 20px;
+  position: relative;
+  font-weight: 800;
+  z-index: 50;
+}
+
+// Adiciona o estilo para o botão de voltar
+.backButton {
+  color: $primary-color;
+  font-size: 16px;
+  text-decoration: none;
+  margin-bottom: 1rem; // Espaço entre o botão e o título
+  text-align: center;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.backButton:hover {
+  color: darken($primary-color, 10%);
+}
+  
 
 // Título do time
 .title {
-  font-size: 5rem;
-  color: $secondary-color;
+  font-size: 3rem;
+  color: $secondary-color; // Cor secundária para o título
   margin-bottom: 1rem;
-  font-family: 'Times New Roman', Times, serif;
 }
 
 // Informações do time
@@ -27,176 +74,156 @@ $success-color: #2ecc71;
   margin-bottom: 2rem;
   p {
     font-size: 1.125rem;
-    color: black;
     strong {
-      color: $primary-color;
+      color: $secondary-color; // Cor primária para o texto em negrito
     }
   }
-}
-
-// Subtítulo da tabela
-.subtitle {
-  font-size: 1.75rem;
-  color: black;
-  margin-bottom: 1rem;
 }
 
 // Estilo da tabela
 .table {
   width: 100%;
-  max-width: 500px;
   border-collapse: collapse;
   margin-top: 20px;
   background-color: $text-color;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   overflow: hidden;
-}
 
-.tableHeader {
+  th {
+    background-color: $primary-color;
+    color: #ffffff;
+    padding: 10px;
+    text-align: left;
+  }
+
+  th:nth-child(3) {
+    position: absolute;
+    left: 75%;
+  }
+
+  td {
+    padding: 10px;
+    color: #000000;
+  }
+
+  .tableHeader {
     background-color: $primary-color;
     color: $text-color;
   }
-  
-  .tableHeader th, .tableBody td {
-    padding: 15px;
-    font-size: 1.5rem; // Ajustado o tamanho da fonte para melhor legibilidade
+
+  .tableBody {
+    tr {
+      &:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+    }
   }
 
-  .tableBody tr {
-    transition: background-color 0.3s ease;
-    text-align: center;
-  }
-  
-  .tableBody tr:nth-child(even) {
-    background-color: #f3f3f3;
-  }
-  
-  .tableBody tr:hover {
-    background-color: #e4e2e2;
-  }
-  
   .actions {
     display: flex;
-    position: relative;
-    left: 40px;
-    align-items: center; // Centraliza verticalmente
-    cursor: pointer; // Adiciona um cursor de ponteiro ao passar sobre os ícones
-  }
-  
-  .actions span {
-    margin: 0 5px; // Adiciona espaçamento entre os ícones
-    font-size: 1.5rem; // Ajusta o tamanho dos ícones
-    color: $primary-color; // Define a cor dos ícones
-  }
-  
-  .actions span:hover {
-    color: $secondary-color; // Cor dos ícones ao passar o mouse sobre eles
+    justify-content: end;
+    font-size: 1.25rem;
+    margin-right: 122px;
+    cursor: pointer;
+    gap: 5px; 
   }
 
-.editBtn, .deleteBtn {
-  background: none;
-  border: none;
-  color: $text-color;
-  cursor: pointer;
-  font-size: 1.25rem;
-  transition: color 0.3s ease;
-}
+  .editBtn {
+    color: $primary-color;
+    &:hover {
+      color: darken($primary-color, 10%);
+    }
+  }
 
-.editBtn:hover {
-  color: $success-color;
-}
-
-.deleteBtn {
-  color: $error-color;
-  &:hover {
+  .deleteBtn {
     color: $error-color;
+    &:hover {
+      color: darken($error-color, 10%);
+    }
+  }
+
+  .void {
+    text-align: center;
+    color: $error-color;
+    font-size: 1.25rem;
+    margin: 20px;
   }
 }
 
-// Mensagem quando não há jogadores
-.void {
-  color: black;
-  font-size: 1.875rem; // Ajustado o tamanho da fonte para melhor visualização
-  font-weight: 500;
-}
-
-
-
-
-
-
-
-/***********  MODAL *********/
-
+// Modal de edição
 .modal {
-    background-color: #f9f9f9;
-    padding: 20px;
-    border-radius: 8px;
-    width: 400px;
-    max-width: 90%;
-    margin: auto;
+  position: relative;
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  max-width: 500px;
+  margin: auto;
+  z-index: 1000;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 500;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  font-size: 1rem;
+  color: $primary-color;
+  margin-bottom: 8px;
+}
+
+.input {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 12px;
+}
+
+.saveButton {
+  background-color: $primary-color;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-right: 8px;
+  &:hover {
+    background-color: darken($primary-color, 10%);
   }
-  
-  .overlay {
-    background-color: rgba(0, 0, 0, 0.75);
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-  }
-  
-  .label {
-    font-weight: bold;
-    color: $secondary-color;
-  }
-  
-  .input {
-    padding: 10px;
-    border: 1px solid $secondary-color;
-    border-radius: 4px;
-    font-size: 16px;
-  }
-  
-  .saveButton {
-    background-color: $primary-color;
-    color: $text-color;
-    padding: 10px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-  }
-  
-  .cancelButton {
-    background-color: $error-color;
-    color: $text-color;
-    padding: 10px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-  }
-  
-  .saveButton:hover {
-    background-color: $secondary-color;
-  }
-  
-  .cancelButton:hover {
+}
+
+.cancelButton {
+  background-color: $error-color;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  &:hover {
     background-color: darken($error-color, 10%);
   }
-  
+}
 
-  /***********  MODAL *********/
+// Link dos jogadores
+.link {
+  color: $primary-color; // Cor primária para links
+  font-weight: 800;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}

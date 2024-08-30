@@ -52,7 +52,7 @@ const TeamsPage = () => {
       text: 'Esta ação não pode ser desfeita!',
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
+      confirmButtonColor: '#6a0dad',
       cancelButtonColor: '#d33',
       confirmButtonText: 'Sim, excluir!',
       cancelButtonText: 'Cancelar'

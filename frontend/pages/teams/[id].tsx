@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import Header from '../../components/Header';
 import styles from '../../styles/TeamDetail.module.scss'; 
 import { formatDateToBrazilian } from '../../utils/data'; 
@@ -75,7 +76,6 @@ const TeamDetail = () => {
         throw new Error('Erro ao salvar o jogador');
       }
 
-      // Atualizar a lista de jogadores
       setTeam((prevTeam) => ({
         ...prevTeam!,
         players: prevTeam!.players.map((player) =>
@@ -96,7 +96,7 @@ const TeamDetail = () => {
       text: 'Esta ação não pode ser desfeita!',
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
+      confirmButtonColor: '#6a0dad',
       cancelButtonColor: '#d33',
       confirmButtonText: 'Sim, excluir!',
       cancelButtonText: 'Cancelar'
@@ -118,8 +118,7 @@ const TeamDetail = () => {
           'success'
         );
 
-        // Atualizar a lista de jogadores após exclusão
-        setTeam(prevTeam => ({
+        setTeam((prevTeam) => ({
           ...prevTeam!,
           players: prevTeam!.players.filter(player => player.id !== playerId),
         }));
@@ -134,46 +133,57 @@ const TeamDetail = () => {
     }
   };
 
+  const handleGoBack = () => {
+    router.back();
+  };
+
   if (loading) return <p>Carregando...</p>;
   if (!team) return <p>Não foi possível encontrar o time.</p>;
 
   return (
     <div className={styles.container}>
       <Header />
-      <h1 className={styles.title}>{team.name}</h1>
-      <div className={styles.info}>
-        <p><strong>Criado em:</strong> {formatDateToBrazilian(team.createdDt)}</p>
-        <p><strong>Atualizado em:</strong> {formatDateToBrazilian(team.updatedDt)}</p>
-      </div>
-      {team.players.length > 0 ? (
-        <table className={styles.table}>
-          <thead className={styles.tableHeader}>
-            <tr>
-              <th>ID</th>
-              <th>Nome</th>
-              <th>Ações</th>
-            </tr>
-          </thead>
-          <tbody className={styles.tableBody}>
-            {team.players.map((player) => (
-              <tr key={player.id}>
-                <td>{player.id}</td>
-                <td>{player.name}</td>
-                <td className={styles.actions}>
-                  <span onClick={() => openModal(player)}>
-                    <FaEdit /> {/* Ícone de editar */}
-                  </span>
-                  <span onClick={() => handleDelete(player.id)}>
-                    <FaTrash /> {/* Ícone de excluir */}
-                  </span>
-                </td>
+      <div className={styles.card}>
+        <span className={styles.backButton} onClick={handleGoBack}>Voltar</span>
+        <h1 className={styles.title}>{team.name}</h1>
+        <div className={styles.info}>
+          <p><strong>Criado em:</strong> {formatDateToBrazilian(team.createdDt)}</p>
+          <p><strong>Atualizado em:</strong> {formatDateToBrazilian(team.updatedDt)}</p>
+        </div>
+        {team.players.length > 0 ? (
+          <table className={styles.table}>
+            <thead className={styles.tableHeader}>
+              <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Ações</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      ) : (
-        <p className={styles.void}>Este time ainda não contratou nenhum jogador :(</p>
-      )}
+            </thead>
+            <tbody className={styles.tableBody}>
+              {team.players.map((player) => (
+                <tr key={player.id}>
+                  <td>{player.id}</td>
+                  <td>
+                    <Link href={`/players/${player.id}`} className={styles.link}>
+                      {player.name}
+                    </Link>
+                  </td>
+                  <td className={styles.actions}>
+                    <span className={styles.editBtn} onClick={() => openModal(player)}>
+                      <FaEdit />
+                    </span>
+                    <span className={styles.deleteBtn} onClick={() => handleDelete(player.id)}>
+                      <FaTrash /> 
+                    </span>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        ) : (
+          <p className={styles.void}>Este time ainda não contratou nenhum jogador :(</p>
+        )}
+      </div>
 
       <Modal
         isOpen={modalIsOpen}

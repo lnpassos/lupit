@@ -1,8 +1,10 @@
-// pages/players.tsx
 import { GetServerSideProps } from 'next';
 import Link from 'next/link';
 import Header from '../components/Header';
 import styles from '../styles/Players.module.scss';  // Importa o SCSS
+import { FaTrash } from 'react-icons/fa'; // Importa o ícone de lixo
+import Swal from 'sweetalert2';
+import { useState } from 'react';
 
 interface Team {
   id: number;
@@ -17,11 +19,13 @@ interface Player {
 }
 
 interface PlayersPageProps {
-  players: Player[];
+  initialPlayers: Player[];
   error: string | null;
 }
 
-const PlayersPage: React.FC<PlayersPageProps> = ({ players, error }) => {
+const PlayersPage: React.FC<PlayersPageProps> = ({ initialPlayers, error }) => {
+  const [players, setPlayers] = useState<Player[]>(initialPlayers);
+
   if (error) {
     return (
       <div className={styles.container}>
@@ -30,6 +34,37 @@ const PlayersPage: React.FC<PlayersPageProps> = ({ players, error }) => {
       </div>
     );
   }
+
+  const handleDelete = async (playerId: number) => {
+    const result = await Swal.fire({
+      title: 'Tem certeza?',
+      text: 'Você não poderá reverter isso!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sim, delete!'
+    });
+
+    if (result.isConfirmed) {
+      try {
+        const response = await fetch(`http://localhost:3001/players/${playerId}`, {
+          method: 'DELETE',
+        });
+
+        if (!response.ok) {
+          throw new Error('Erro ao deletar o jogador');
+        }
+
+        Swal.fire('Deletado!', 'O jogador foi deletado com sucesso.', 'success');
+
+        // Atualiza o estado local removendo o jogador deletado
+        setPlayers(players.filter(player => player.id !== playerId));
+      } catch (error) {
+        Swal.fire('Erro!', 'Não foi possível deletar o jogador.', 'error');
+      }
+    }
+  };
 
   return (
     <div className={styles.container}>
@@ -45,13 +80,18 @@ const PlayersPage: React.FC<PlayersPageProps> = ({ players, error }) => {
               <th>Nome</th>
               <th>Idade</th>
               <th>Time</th>
+              <th>Ações</th> {/* Nova coluna de ações */}
             </tr>
           </thead>
           <tbody className={styles.tableBody}>
             {players.map(player => (
               <tr key={player.id}>
                 <td>{player.id}</td>
-                <td>{player.name}</td>
+                <td>
+                  <Link href={`/players/${player.id}`} className={styles.link}>
+                    {player.name}
+                  </Link>
+                </td>
                 <td>{player.age}</td>
                 <td>
                   {player.team ? (
@@ -61,6 +101,14 @@ const PlayersPage: React.FC<PlayersPageProps> = ({ players, error }) => {
                   ) : (
                     'No team assigned'
                   )}
+                </td>
+                <td>
+                  <button
+                    className={styles.deleteButton}
+                    onClick={() => handleDelete(player.id)}
+                  >
+                    <FaTrash />
+                  </button>
                 </td>
               </tr>
             ))}
@@ -77,11 +125,11 @@ export const getServerSideProps: GetServerSideProps<PlayersPageProps> = async ()
     if (!res.ok) {
       throw new Error('Failed to fetch players');
     }
-    const players = await res.json();
+    const initialPlayers = await res.json();
 
-    return { props: { players, error: null } };
+    return { props: { initialPlayers, error: null } };
   } catch (error) {
-    return { props: { players: [], error: (error as Error).message } };
+    return { props: { initialPlayers: [], error: (error as Error).message } };
   }
 };
 
