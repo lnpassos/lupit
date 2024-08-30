@@ -7,7 +7,7 @@ Após fazer o download do projeto via `.zip` ou `git clone`, siga os passos abai
    Instale as dependências do projeto:<br>
    npm install
    
-   Inicie o servidor de desenvolvimento:
+   Inicie o servidor de desenvolvimento:<br>
    npm run dev
    
 ____________________________________________________________________________________
