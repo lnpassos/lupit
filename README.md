@@ -35,7 +35,7 @@ ________________________________________________________________________________
 
 # Features
 ## IMPORTANT! 
-Para navegar entre os Endpoints, apenas utilizei o menu fixo do Header, sendo o titulo: `Lupit`.
+## Para navegar entre os Endpoints, apenas utilizei o menu fixo do Header, sendo o titulo: `Lupit`.
 
 Utilizei bibliotecas React / Next no Front-end para tornar algo legal visualmente pro usuário,
 uma feature apenas como simulação é o `Spinner de validação`, simulando um `request` para o backend,
