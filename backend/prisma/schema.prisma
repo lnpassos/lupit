@@ -1,0 +1,26 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Team {
+  id         Int      @id @default(autoincrement())
+  name       String
+  createdDt  DateTime @default(now())
+  updatedDt  DateTime @updatedAt
+  players    Player[]
+}
+
+model Player {
+  id         Int      @id @default(autoincrement())
+  name       String
+  age        Int
+  teamId     Int
+  team       Team     @relation(fields: [teamId], references: [id])
+  createdDt  DateTime @default(now())
+  updatedDt  DateTime @updatedAt
+}
