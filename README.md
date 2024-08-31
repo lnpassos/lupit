@@ -24,7 +24,7 @@ ________________________________________________________________________________
 ____________________________________________________________________________________
 
 # Validações
-Não há muitas para tornar a aplicação mais rápida, alguns deles são:
+Não há muitas, para tornar a aplicação mais rápida. Algumas delas são:
 Nome: Apenas STR.
 Idade: Apenas INT.
 Edit Jogador: Ele não pode ficar sem um time.
