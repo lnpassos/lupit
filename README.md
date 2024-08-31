@@ -39,8 +39,6 @@ Utilizei bibliotecas React / Next no Front-end para tornar algo legal visualment
 uma feature apenas como simulação é o `Spinner de validação`, simulando um `request` para o backend,
 fazendo as verificações necessárias, aguardando o `response` para criar o usuário.
 
-`Não há uma validação em volta disso, apenas como simulação`
-
 ____________________________________________________________________________________
 
 # Endpoints
