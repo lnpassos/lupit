@@ -8,10 +8,10 @@ const Home = () => (
     <main className={styles.mainContent}>
       <h1>FutLovers.io</h1>
       <div className={styles.buttonContainer}>
-        <Button href="/create-team">Criar novo Time</Button>
-        <Button href="/create-player">Criar novo Jogador</Button>
-        <Button href="/teams">Ver Times criados</Button>
-        <Button href="/players">Ver os Jogadores criados</Button>
+        <Button href="/create-team">Cadastrar novo Time</Button>
+        <Button href="/create-player">Cadastrar novo Jogador</Button>
+        <Button href="/teams">Ver Times cadastrados</Button>
+        <Button href="/players">Ver os Jogadores cadastrados</Button>
       </div>
     </main>
   </div>
