@@ -31,7 +31,7 @@ const CreateTeam = () => {
         text: 'Não foi possível criar o time. Tente novamente.',
         icon: 'error',
         confirmButtonText: 'OK',
-        confirmButtonColor: '#e74c3c', // Cor do botão de confirmação
+        confirmButtonColor: '#e74c3c', 
       });
     }
   };
@@ -46,6 +46,7 @@ const CreateTeam = () => {
           Nome:
           <input
             type="text"
+            placeholder="Ex: Barcelona"
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
