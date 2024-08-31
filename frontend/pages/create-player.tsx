@@ -4,7 +4,7 @@ import Header from '../components/Header';
 import Button from '../components/Button';
 import Swal from 'sweetalert2';
 import { Oval } from 'react-loader-spinner'; // Importa o componente de loading
-import styles from '../styles/CreatePlayer.module.scss'; // Certifique-se de que este arquivo existe e está configurado
+import styles from '../styles/CreatePlayer.module.scss'; 
 
 const CreatePlayer = () => {
   const [name, setName] = useState('');
@@ -36,7 +36,7 @@ const CreatePlayer = () => {
     setLoading(true); // Ativa o loading
 
     try {
-      await new Promise((resolve) => setTimeout(resolve, 2000)); // Simula um atraso de 2 segundos
+      await new Promise((resolve) => setTimeout(resolve, 1500));
       await axios.post('http://localhost:3001/players', { name, age, teamId });
 
       setName('');
@@ -71,6 +71,7 @@ const CreatePlayer = () => {
           Nome:
           <input
             type="text"
+            placeholder='Ex: Messi'
             value={name}
             onChange={(e) => setName(e.target.value)}
             required

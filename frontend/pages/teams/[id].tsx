@@ -67,7 +67,7 @@ const TeamDetail = () => {
             <thead className={styles.tableHeader}>
               <tr>
                 <th>ID</th>
-                <th>Nome</th>
+                <th>Jogadores</th>
               </tr>
             </thead>
             <tbody className={styles.tableBody}>

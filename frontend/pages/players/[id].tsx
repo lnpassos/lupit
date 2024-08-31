@@ -159,7 +159,8 @@ const PlayerPage = () => {
       <h1 className={styles.title}>Detalhes do Jogador</h1>
       <div className={styles.card}>
         <div className={styles.playerDetails}>
-          <p><strong>Nome:</strong> {player.name}</p>
+        <span className={styles.backButton} onClick={handleGoBack}>Voltar</span>
+          <p className={styles.nameTitle}>{player.name}</p>
           <p><strong>Idade:</strong> {player.age}</p>
           <p><strong>Time:</strong> {player.team ? player.team.name : 'Nenhum time atribuído'}</p>
         </div>
@@ -167,8 +168,6 @@ const PlayerPage = () => {
           <button className={styles.editButton} onClick={openModal}>Editar</button>
           <button className={styles.deleteButton} onClick={handleDelete}>Excluir</button>
         </div>
-
-        <span className={styles.backButton} onClick={handleGoBack}>Voltar</span>
       </div>
 
       <Modal

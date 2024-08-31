@@ -40,15 +40,25 @@ $success-color: #2ecc71;
   z-index: 50;
 }
 
+.nameTitle {
+  font-size: 30px;
+  color:$primary-color;
+  font-family: cursive;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  z-index: 50;
+  text-decoration: underline;
+}
+
 // Card do jogador
 .card {
   background-color: $text-color;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  max-width: 600px;
+  max-width: 180px;
   width: 100%;
-  text-align: center;
+  text-align: left;
   position: relative;
   z-index: 50;
 }
@@ -101,14 +111,10 @@ $success-color: #2ecc71;
     color: $primary-color;
     font-size: 16px;
     text-decoration: none;
-    margin-bottom: 1rem; // Espaço entre o botão e o título
     text-align: center;
     cursor: pointer;
-    font-weight: 800;
     transition: color 0.3s ease;
     position: relative;
-    top: 8px;
-
   }
   
   .backButton:hover {
