@@ -10,8 +10,8 @@ const Home = () => (
       <div className={styles.buttonContainer}>
         <Button href="/create-team">Cadastrar novo Time</Button>
         <Button href="/create-player">Cadastrar novo Jogador</Button>
-        <Button href="/teams">Ver Times cadastrados</Button>
-        <Button href="/players">Ver os Jogadores cadastrados</Button>
+        <Button href="/teams">Visualizar os Times cadastrados</Button>
+        <Button href="/players">Visualizar os Jogadores cadastrados</Button>
       </div>
     </main>
   </div>
