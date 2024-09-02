@@ -28,7 +28,7 @@ Não há muitas, para tornar a aplicação mais rápida. Algumas delas são:<br>
 `Idade`: Apenas INT.<br><br>
 `Edit Jogador`: Ele não pode ficar sem um time.<br><br>
 `Conexão com o SERVIDOR`, inicie apenas o Frontend, ao tentar entrar /Players ou /Teams, retornará mensagem de erro, dizendo que não foi possivel se conectar ao Servidor.<br>
-`OBS:` <b>Apenas fiz uma validação customizada para esses dois Endpoints</b>
+<b>OBS: Apenas fiz uma validação customizada para esses dois Endpoints</b>
 
 
 ____________________________________________________________________________________
@@ -36,7 +36,7 @@ ________________________________________________________________________________
 # Features
 Utilizei bibliotecas React / Next no Front-end para tornar o projeto mais dinâmico e melhor visualmente pro usuário,
 um exemplo de feature é o `Spinner de validação`, simulando um `request` para o backend,
-fazendo as verificações necessárias, aguardando o `response` para criar um `Player / Team`.
+fazendo as verificações necessárias, aguardando o `response` para criar um `Player` ou `Team`
 
 ____________________________________________________________________________________
 
