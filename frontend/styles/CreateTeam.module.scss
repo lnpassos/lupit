@@ -1,9 +1,4 @@
-$primary-color: #6a0dad;
-$secondary-color: #4b0082;
-$title-color: rgb(59, 2, 77);
-$text-color: #ffffff;
-$error-color: #e74c3c;
-$success-color: #2ecc71;
+@import '../styles/colors.scss';
 
 .container {
   display: flex;
@@ -30,12 +25,11 @@ $success-color: #2ecc71;
   z-index: 1;
 }
 
-
 .title {
-  color: $title-color;
-  font-size: 2.5rem;
+  color: $primary-color;
+  font-size: 2.3rem; 
   margin-bottom: 20px;
-  font-weight: 600;
+  font-weight: 600; 
   z-index: 50;
   text-decoration: double underline;
   text-underline-offset: 5px; /* Ajusta a distância entre o sublinhado e o texto */
@@ -44,61 +38,74 @@ $success-color: #2ecc71;
 .form {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  max-width: 500px;
+  gap: 20px; 
+  max-width: 600px;
   width: 100%;
   background: $text-color;
   padding: 20px;
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border: 1px solid #e0e0e0;
+  border: 1px solid $border-color;
   z-index: 50;
 }
 
-.label {
-  font-weight: 600;
-  margin-bottom: 10px;
+// Botão de voltar
+.backButton {
   color: $primary-color;
-  font-size: 20px;
+  font-size: 16px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  display: block;
+  margin-bottom: 15px;
+  font-weight: 800;
+}
+
+.backButton:hover {
+  color: darken($primary-color, 10%);
+}
+
+
+.label {
+  font-weight: 800;
+  margin-left: 2px;
+  margin-bottom: 5px; 
+  color: $primary-color;
 }
 
 .input {
   padding: 12px;
-  border: 1px solid #ddd;
+  border: 1px solid $input-color;
   border-radius: 6px;
   font-size: 16px;
-  margin-top: 20px;
   transition: border-color 0.3s ease;
-  width: 94.5%;
-  font-size: 20px;
+  margin-left: 20px;
+  width: 84%;
 }
 
 .input:focus {
   border-color: $primary-color;
-  outline: none;
+  outline: none; 
 }
 
-.button {
-  background-color: $primary-color;
-  color: $text-color;
-  padding: 12px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 19px;
-  font-weight: 500;
-  transition: background-color 0.3s ease;
-  width: 100%;
+/* Spinner simulando websocket */
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
 }
 
-.button:hover {
-  background-color: $secondary-color;
+.loading p {
+  margin-top: 10px;
+  font-size: 16px;
+  color: #333;
 }
 
-.error {
-  color: $error-color;
-}
-
-.success {
-  color: $success-color;
+.backButton {
+  color: $primary-color;
+  text-decoration: none;
+  font-size: 16px;
+  margin-bottom: 20px;
+  display: inline-block;
 }

@@ -1,10 +1,4 @@
-// Definição das cores
-$primary-color: #6a0dad;
-$secondary-color: #4b0082;
-$title-color: rgb(59, 2, 77);
-$text-color: #ffffff;
-$error-color: #e74c3c;
-$success-color: #2ecc71;
+@import '../styles/colors.scss';
 
 // Container principal
 .container {
@@ -32,22 +26,14 @@ $success-color: #2ecc71;
   z-index: 1;
 }
 
-// Título do jogador
-.title {
-  font-size: 2.3rem;
-  color: $title-color;
+// Título do card
+.cardTitle {
+  color: $secondary-color;
+  font-size: 1.5rem;
   margin-bottom: 1rem;
-  z-index: 50;
-}
-
-.nameTitle {
-  font-size: 30px;
-  color:$primary-color;
-  font-family: cursive;
-  font-weight: 800;
-  margin-bottom: 1rem;
-  z-index: 50;
-  text-decoration: underline;
+  text-align: center;
+  border-bottom: 2px solid $primary-color;
+  padding-bottom: 10px;
 }
 
 // Card do jogador
@@ -56,7 +42,7 @@ $success-color: #2ecc71;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  max-width: 180px;
+  max-width: 300px;
   width: 100%;
   text-align: left;
   position: relative;
@@ -73,53 +59,68 @@ $success-color: #2ecc71;
   }
 }
 
-// Botão de editar
+.nameTitle {
+  font-size: 30px;
+  color: $primary-color;
+  font-family: cursive;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  text-decoration: underline;
+}
+
+// Botão de voltar
+.backButton {
+  color: $primary-color;
+  font-size: 16px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  display: block;
+  margin-bottom: 15px;
+  font-weight: 800;
+}
+
+.backButton:hover {
+  color: darken($primary-color, 10%);
+  
+}
+
+// Botões do card
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.editButton,
+.deleteButton {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%; /* Ajusta para a largura do botão */
+}
+
 .editButton {
   background-color: $primary-color;
   color: $text-color;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
-  margin-right: 10px;
-  transition: background-color 0.3s ease;
 }
 
 .editButton:hover {
-  background-color: $secondary-color;
+  background-color: darken($primary-color, 10%);
 }
 
-// Botão de excluir
 .deleteButton {
   background-color: $error-color;
   color: $text-color;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s ease;
 }
 
 .deleteButton:hover {
   background-color: darken($error-color, 10%);
 }
-
-// Adiciona o estilo para o botão de voltar
-.backButton {
-    color: $primary-color;
-    font-size: 16px;
-    text-decoration: none;
-    text-align: center;
-    cursor: pointer;
-    transition: color 0.3s ease;
-    position: relative;
-  }
-  
-  .backButton:hover {
-    color: darken($primary-color, 10%);
-  }
 
 // Modal
 .overlay {
@@ -144,6 +145,15 @@ $success-color: #2ecc71;
   position: relative;
 }
 
+.modalTitle {
+  color: $title-color;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  text-align: center;
+  border-bottom: 2px solid $primary-color;
+  padding-bottom: 10px;
+}
+
 .form {
   display: flex;
   flex-direction: column;
@@ -152,14 +162,22 @@ $success-color: #2ecc71;
 
 .label {
   font-weight: bold;
-  color: $secondary-color;
+  color: $title-color;
+  font-size: 16px;
 }
 
 .input {
   padding: 10px;
-  border: 1px solid $secondary-color;
+  border: 1px solid $border-color;
   border-radius: 4px;
   font-size: 16px;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
 }
 
 .saveButton {
@@ -170,12 +188,12 @@ $success-color: #2ecc71;
   border-radius: 4px;
   cursor: pointer;
   font-size: 16px;
-  margin-right: 10px;
+  width: 100%; 
   transition: background-color 0.3s ease;
 }
 
 .saveButton:hover {
-  background-color: $secondary-color;
+  background-color: darken($primary-color, 10%);
 }
 
 .cancelButton {
@@ -186,6 +204,7 @@ $success-color: #2ecc71;
   border-radius: 4px;
   cursor: pointer;
   font-size: 16px;
+  width: 100%; 
   transition: background-color 0.3s ease;
 }
 

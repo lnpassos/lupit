@@ -1,9 +1,4 @@
-// Definição das cores
-$primary-color: #6a0dad; 
-$title-color: rgb(59, 2, 77);
-$text-color: #ffffff; 
-$input-color: #ddd;
-$border-color: #e0e0e0; 
+@import '../styles/colors.scss';
 
 .container {
   display: flex;
@@ -26,26 +21,52 @@ $border-color: #e0e0e0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(255, 255, 255, 0.7); /* Adiciona uma camada semi-transparente */
+  background-color: rgba(255, 255, 255, 0.7); 
   z-index: 1;
 }
 
-.title {
-  color: $title-color;
-  font-size: 2rem;
-  margin-bottom: 20px;
-  text-align: center;
+.titleContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
   z-index: 50;
-  text-decoration: double underline;
-  text-underline-offset: 5px; /* Ajusta a distância entre o sublinhado e o texto */
+  border-bottom: white solid 1px;
+}
+
+.tableTitle {
+  color: $text-color;
+  font-size: 2rem;
+  text-align: left;
+  margin: 0;
+}
+
+.createPlayerButton {
+  background-color: $text-color;
+  color: $primary-color;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-left: auto;
+  position: relative;
+  top: 5px;
+}
+
+.createPlayerButton:hover {
+  background-color: darken($text-color, 10%);
 }
 
 .table {
   width: 100%;
   max-width: 1200px;
   border-collapse: collapse;
-  margin-top: 20px;
-  background-color: $text-color;
+  margin-top: 100px;
+  margin-bottom: 30px;
+  background-color: $primary-color;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   overflow: hidden;
@@ -55,38 +76,37 @@ $border-color: #e0e0e0;
 .tableHeader {
   background-color: $primary-color;
   color: $text-color;
-}
 
-.tableHeader th, .tableBody td {
-  padding: 15px;
-  text-align: left;
-  font-size: 20px;
-}
+  th {
+    font-weight: bold;
+    border-bottom: 2px solid $primary-color;
+    padding: 15px;
+    text-align: center;
+    font-size: 20px;
+  }
 
-.tableHeader th:nth-child(5) {
-  text-align: center; /* Centraliza o texto da coluna "Ações" */
-}
-
-.tableBody td:nth-child(5) {
-  text-align: center; /* Centraliza o conteúdo da coluna "Ações" */
-}
-
-.tableHeader th {
-  font-weight: bold;
-  border-bottom: 2px solid $primary-color;
+  .tableThActions {
+    text-align: center; 
+  }
 }
 
 .tableBody tr {
   transition: background-color 0.3s ease;
   background-color: #ffffff;
-}
 
-.tableBody tr:nth-child(even) {
-  background-color: #f3f3f3;
-}
+  &:nth-child(even) {
+    background-color: #f3f3f3;
+  }
 
-.tableBody tr:hover {
-  background-color: #e4e2e2;
+  &:hover {
+    background-color: #e4e2e2;
+  }
+
+  td {
+    padding: 15px;
+    text-align: center;
+    font-size: 20px;
+  }
 }
 
 .link {
@@ -95,28 +115,173 @@ $border-color: #e0e0e0;
   font-weight: bold;
   font-size: 20px;
   transition: all 0.3s ease;
-}
 
-.link:hover {
-  text-decoration: underline;
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 .error {
-  color: rgb(211, 0, 0);
+  color: $error-color;
   font-weight: bold;
   text-align: center;
 }
 
-.deleteButton {
-  background: transparent;
-  border: none;
-  cursor: pointer;
+
+// Estilo para ícones 
+.icon {
   color: $primary-color;
   font-size: 1.5rem;
+  cursor: pointer;
   transition: color 0.3s ease;
+
+  &:hover {
+    color: darken($primary-color, 15%);
+  }
 }
 
-.deleteButton:hover {
-  color: darken($primary-color, 10%);
+
+
+
+// ################################################################ //
+
+
+
+
+// Modal
+.overlay {
+  background-color: rgba(0, 0, 0, 0.75);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
 }
 
+.modal {
+  background-color: $text-color;
+  padding: 20px;
+  border-radius: 8px;
+  width: 400px;
+  max-width: 90%;
+  position: relative;
+  z-index: 101; /* Garante que o modal esteja acima da sobreposição */
+}
+
+.modalTitle {
+  color: $title-color;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  text-align: center;
+  border-bottom: 2px solid $primary-color;
+  padding-bottom: 10px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.label {
+  font-weight: bold;
+  color: $primary-color;
+  font-size: 16px;
+}
+
+.input {
+  padding: 10px;
+  border: 1px solid $border-color;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.saveButton {
+  background-color: $primary-color;
+  color: $text-color;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+  width: 100%; /* Ajusta para a largura do botão */
+}
+
+.saveButton:hover {
+  background-color: darken($primary-color, 10%);
+}
+
+.cancelButton {
+  background-color: $error-color;
+  color: $text-color;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+  width: 100%; /* Ajusta para a largura do botão */
+}
+
+.cancelButton:hover {
+  background-color: darken($error-color, 10%);
+}
+
+
+
+
+// ################################################################ //
+
+
+
+
+// Animação de Loading de tela..
+.loadingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  background-color: #f0f0f0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+}
+
+.loadingContainer p {
+  margin-top: 10px;
+  font-size: 18px;
+  color: #00bfff;
+  font-weight: bold;
+}
+
+
+
+// ################################################################ //
+
+
+
+// Erro caso o usuário não consiga acessar o servidor
+.error {
+  z-index: 50;
+  color: white;
+  background-color: #d9534f; // Cor de fundo para destacar a mensagem de erro
+  padding: 1rem;
+  border-radius: 5px;
+  text-align: center;
+  margin: 1rem;
+}

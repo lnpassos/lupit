@@ -1,30 +1,52 @@
-$primary-color: #6a0dad; // Cor roxa
-$text-color: #ffffff; // Cor branca
+@import '../styles/colors.scss';
 
+// Estilos para o header
 .header {
   background-color: $primary-color;
   padding: 1rem;
-  position: fixed; /* Garante que o header esteja fixo no topo */
+  position: fixed;
   top: 0;
   left: 0;
-  width: 100%; /* Garante que o header ocupe toda a largura da tela */
-  z-index: 1000; /* Garante que o header esteja acima de outros conteúdos */
+  width: 100%;
+  z-index: 1000;
 }
 
+// Estilos para a navegação
 .nav {
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 10px; 
 }
 
+// Estilos para os links
 .link {
   color: $text-color;
   text-decoration: none;
   font-size: 1.5rem;
   font-weight: bold;
+  position: relative; 
+  padding: 0 50px; 
   transition: color 0.3s;
 
   &:hover {
-    color: lighten($text-color, 20%);
+    color: darken($text-color, 10%);
   }
+
+  // Pseudo-elemento para a barra separadora
+  &::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px; 
+    height: 1.7rem;
+    background-color: $text-color;
+  }
+
+  &:last-child::after { 
+    display: none; /* Remove a barra separadora do último link */
+  }
+
 }

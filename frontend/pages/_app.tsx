@@ -1,5 +1,5 @@
-import '../styles/globals.scss'; // Caminho correto para o arquivo SCSS
-import { AppProps } from 'next/app'; // Importa o tipo AppProps
+import '../styles/globals.scss'; 
+import { AppProps } from 'next/app'; 
 import { IBM_Plex_Sans } from "next/font/google";
 import Head from "next/head";
 

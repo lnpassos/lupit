@@ -6,7 +6,9 @@ import { formatDateToBrazilian } from '../utils/data';
 import Modal from 'react-modal';
 import Swal from 'sweetalert2';
 import { FaEdit, FaTrash } from 'react-icons/fa';
+import { Oval } from 'react-loader-spinner';
 
+// Interface
 interface Team {
   id: number;
   name: string;
@@ -14,9 +16,11 @@ interface Team {
   updatedDt: string;
 }
 
+// Acessando a API para obter os times
 const TeamsPage = () => {
   const [teams, setTeams] = useState<Team[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [currentTeam, setCurrentTeam] = useState<Team | null>(null);
 
@@ -24,10 +28,13 @@ const TeamsPage = () => {
     const fetchTeams = async () => {
       try {
         const response = await fetch('http://localhost:3001/teams');
+        if (!response.ok) {
+          throw new Error('Erro ao se conectar no servidor!');
+        }
         const data = await response.json();
         setTeams(data);
       } catch (error) {
-        console.error('Failed to fetch teams:', error);
+        setError((error as Error).message);
       } finally {
         setLoading(false);
       }
@@ -112,20 +119,54 @@ const TeamsPage = () => {
     }
   };
 
-  if (loading) return <p>Carregando...</p>;
+  // Animação para Loading..
+  if (loading) return (
+    <div className={styles.loadingContainer}>
+      <Oval
+        height={80}
+        width={80}
+        color="#00BFFF"
+        visible={true}
+        ariaLabel='oval-loading'
+        secondaryColor="#00BFFF"
+        strokeWidth={2}
+        strokeWidthSecondary={2}
+      />
+      <p>Procurando por Times..</p>
+    </div>
+  );
+
+  // Se houver algum tipo de erro, exibir mensagem para o usuário
+  if (error) {
+    return (
+      <div className={styles.container}>
+        <Header />
+        <p className={styles.error}>Erro ao se conectar no servidor! - Tente novamente mais tarde.</p>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.container}>
       <Header />
-      <h1 className={styles.title}>Times Cadastrados</h1>
       <table className={styles.table}>
         <thead className={styles.tableHeader}>
-          <tr>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>Criado em</th>
-            <th>Atualizado em</th>
-            <th>Ações</th>
+          <tr className={styles.trTitle}>
+            <th colSpan={5} className={styles.buttonCell}>
+              <div className={styles.titleContainer}>
+                <h1 className={styles.tableTitle}>Tabela de Times</h1>
+                <Link href="/create-team" className={styles.createButton}>
+                  <button className={styles.createTeamButton}>Cadastrar novo Time</button>
+                </Link>
+              </div>
+            </th>
+          </tr>
+          <tr className={styles.lineTr}>
+            <th className={styles.tableThId}>ID</th>
+            <th className={styles.tableThName}>Nome</th>
+            <th className={styles.tableThCreated}>Criado em</th>
+            <th className={styles.tableThUpdated}>Atualizado em</th>
+            <th className={styles.tableThActions}>Ações</th>
           </tr>
         </thead>
         <tbody className={styles.tableBody}>
@@ -160,7 +201,7 @@ const TeamsPage = () => {
         </tbody>
       </table>
 
-      {/* Modal para edição */}
+      {/* Modal para edição de time */}
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
@@ -168,7 +209,7 @@ const TeamsPage = () => {
         className={styles.modal}
         overlayClassName={styles.overlay}
       >
-        <h2>Editar Time</h2>
+        <h2 className={styles.modalTitle}>Editar Time</h2>
         <div className={styles.form}>
           <label className={styles.label}>Nome do Time</label>
           <input

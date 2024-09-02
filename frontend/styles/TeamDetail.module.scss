@@ -1,10 +1,4 @@
-// Definição das cores
-$primary-color: #6a0dad;
-$secondary-color: #4b0082;
-$title-color: rgb(59, 2, 77);
-$text-color: #ffffff;
-$error-color: #e74c3c;
-$success-color: #2ecc71;
+@import '../styles/colors.scss';
 
 // Container principal
 .container {

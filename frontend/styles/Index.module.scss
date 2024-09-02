@@ -3,9 +3,9 @@
   flex-direction: column;
   min-height: 100vh;
   background-image: url('https://static.vecteezy.com/ti/vetor-gratis/p1/2222293-ilustracao-em-de-fundo-abstrato-de-bola-de-futebol-em-chamas-vetor.jpg');
-  background-size: cover; /* Cobre todo o contêiner */
-  background-position: center; /* Centraliza a imagem de fundo */
-  background-repeat: no-repeat; /* Evita repetição da imagem */
+  background-size: cover; 
+  background-position: center;
+  background-repeat: no-repeat; 
 }
 
 .mainContent {
@@ -16,8 +16,8 @@
   justify-content: center;
   padding: 20px;
   text-align: center;
-  margin-top: 4rem; /* Adiciona margem superior para evitar sobreposição */
-  background-color: rgba(255, 255, 255, 0.7); /* Adiciona um fundo semi-transparente para legibilidade */
+  margin-top: 4rem; 
+  background-color: rgba(255, 255, 255, 0.7); 
 }
 
 .buttonContainer {
@@ -28,6 +28,6 @@
 }
 
 .buttonContainer > * {
-  flex: 1 1 calc(50% - 20px); /* Dois botões por linha, considerando o gap */
-  max-width: 400px; /* Limita a largura máxima dos botões */
+  flex: 1 1 calc(50% - 20px); 
+  max-width: 400px; 
 }

@@ -4,6 +4,7 @@ import { Body, Controller, Get, Param, Post, Put, Delete } from '@nestjs/common'
 import { TeamService } from './team.service';
 import { CreateTeamDto } from './dto/create-team.dto';
 
+// Routes para times
 @Controller('teams')
 export class TeamController {
   constructor(private readonly teamService: TeamService) {}

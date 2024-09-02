@@ -19,6 +19,7 @@ interface Player {
   team: Team | null;
 }
 
+// Acessando a API para obter os detalhes do jogador
 const PlayerPage = () => {
   const router = useRouter();
   const { id } = router.query;
@@ -156,10 +157,10 @@ const PlayerPage = () => {
   return (
     <div className={styles.container}>
       <Header />
-      <h1 className={styles.title}>Detalhes do Jogador</h1>
       <div className={styles.card}>
+      <span className={styles.backButton} onClick={handleGoBack}>Voltar</span>
+        <h1 className={styles.cardTitle}>Detalhes do Jogador</h1>
         <div className={styles.playerDetails}>
-        <span className={styles.backButton} onClick={handleGoBack}>Voltar</span>
           <p className={styles.nameTitle}>{player.name}</p>
           <p><strong>Idade:</strong> {player.age}</p>
           <p><strong>Time:</strong> {player.team ? player.team.name : 'Nenhum time atribuído'}</p>
@@ -170,49 +171,58 @@ const PlayerPage = () => {
         </div>
       </div>
 
-      <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        contentLabel="Editar Jogador"
-        className={styles.modal}
-        overlayClassName={styles.overlay}
-      >
-        <h2>Editar Jogador</h2>
-        <div className={styles.form}>
-          <label className={styles.label}>Nome:</label>
-          <input
-            type="text"
-            value={playerName}
-            onChange={(e) => setPlayerName(e.target.value)}
-            className={styles.input}
-          />
-          <label className={styles.label}>Idade:</label>
-          <input
-            type="number"
-            value={playerAge}
-            onChange={(e) => setPlayerAge(e.target.value)}
-            className={styles.input}
-          />
-          <label className={styles.label}>Time:</label>
-          <select
-            value={selectedTeamId || ''}
-            onChange={(e) => setSelectedTeamId(parseInt(e.target.value, 10))}
-            className={styles.input}
-          >
-            <option value="">Nenhum time</option>
-            {teams.map((team) => (
-              <option key={team.id} value={team.id}>
-                {team.name}
-              </option>
-            ))}
-          </select>
-          <button onClick={handleEditSave} className={styles.saveButton}>Salvar</button>
-          <button onClick={closeModal} className={styles.cancelButton}>Cancelar</button>
-        </div>
-      </Modal>
 
-      <ToastContainer />
-    </div>
+      <Modal
+      isOpen={modalIsOpen}
+      onRequestClose={closeModal}
+      contentLabel="Editar Jogador"
+      className={styles.modal}
+      overlayClassName={styles.overlay}
+      >
+        
+      <h2 className={styles.modalTitle}>Editar Jogador</h2>
+      <div className={styles.form}>
+        <label className={styles.label}>Nome:</label>
+        <input
+          type="text"
+          value={playerName}
+          onChange={(e) => setPlayerName(e.target.value)}
+          className={styles.input}
+        />
+        <label className={styles.label}>Idade:</label>
+        <input
+          type="number"
+          value={playerAge}
+          onChange={(e) => setPlayerAge(e.target.value)}
+          className={styles.input}
+        />
+        <label className={styles.label}>Time:</label>
+        <select
+          value={selectedTeamId || ''}
+          onChange={(e) => setSelectedTeamId(parseInt(e.target.value, 10))}
+          className={styles.input}
+        >
+          <option value="">Nenhum time</option>
+          {teams.map((team) => (
+            <option key={team.id} value={team.id}>
+              {team.name}
+            </option>
+          ))}
+        </select>
+        <div className={styles.buttons}>
+          <button onClick={handleEditSave} className={styles.saveButton}>
+            Salvar
+          </button>
+          <button onClick={closeModal} className={styles.cancelButton}>
+            Cancelar
+          </button>
+        </div>
+      </div>
+    </Modal>
+
+
+    <ToastContainer />
+  </div>
   );
 };
 
