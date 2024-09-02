@@ -24,11 +24,11 @@ ________________________________________________________________________________
 ____________________________________________________________________________________
 
 # Validações
-Não há muitas, para tornar a aplicação mais rápida. Algumas delas são:<br>
-`Idade`: Apenas INT.<br>
-`Edit Jogador`: Ele não pode ficar sem um time.<br>
-`Conexão com o SERVIDOR`, inicie apenas o Frontend, ao tentar entrar /Players ou /Teams, retornará mensagem de erro, dizendo que não foi possivel se conectar ao Servidor.<br>
-OBS: Apenas fiz uma validação customizada para esses dois Endpoints
+Não há muitas, para tornar a aplicação mais rápida. Algumas delas são:<br><br>
+`Idade`: Apenas INT.<br><br>
+`Edit Jogador`: Ele não pode ficar sem um time.<br><br>
+`Conexão com o SERVIDOR`, inicie apenas o Frontend, ao tentar entrar /Players ou /Teams, retornará mensagem de erro, dizendo que não foi possivel se conectar ao Servidor.<br><br>
+`OBS: Apenas fiz uma validação customizada para esses dois Endpoints`
 
 
 ____________________________________________________________________________________
