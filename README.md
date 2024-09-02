@@ -27,7 +27,7 @@ ________________________________________________________________________________
 Não há muitas, para tornar a aplicação mais rápida. Algumas delas são:<br><br>
 <b>`Idade`</b>: Apenas INT.<br><br>
 <b>`Edit Jogador`</b>: Ele não pode ficar sem um time.<br><br>
-<b>`Conexão com o SERVIDOR`</b>, inicie apenas o Frontend, ao tentar entrar /Players ou /Teams, retornará mensagem de erro, dizendo que não foi possivel se conectar ao Servidor.<br>
+<b>`Conexão com o SERVIDOR`</b>, inicie apenas o Frontend, ao tentar entrar <b>/Players</b> ou <b>/Teams</b>, retornará mensagem de erro, dizendo que não foi possivel se conectar ao Servidor.<br>
 <b>OBS: Apenas fiz uma validação customizada para esses dois Endpoints</b>
 
 
