@@ -1,14 +1,14 @@
 # DOCUMENTAÇÃO
-Após fazer o download do projeto via `.zip` ou `git clone`, siga os passos abaixo:
+Após ter o projeto em sua máquina, siga os passos abaixo:
 
 1. **Entre na pasta `Frontend`:**
 
    cd Frontend<br><br>
    Instale as dependências do projeto:<br>
-   `npm install`
+   <b>`npm install`</b>
    
    Inicie o servidor de desenvolvimento:<br>
-   `npm run dev`
+   <b>`npm run dev`</b>
    
 ____________________________________________________________________________________
 
@@ -16,18 +16,18 @@ ________________________________________________________________________________
    
    cd ../Backend<br><br>
    Instale as dependências do projeto:<br>
-   `npm install`
+   <b>`npm install`</b>
    
    Inicie o servidor:<br>
-   `npm run start`
+   <b>`npm run start`</b>
    
 ____________________________________________________________________________________
 
 # Validações
 Não há muitas, para tornar a aplicação mais rápida. Algumas delas são:<br><br>
-`Idade`: Apenas INT.<br><br>
-`Edit Jogador`: Ele não pode ficar sem um time.<br><br>
-`Conexão com o SERVIDOR`, inicie apenas o Frontend, ao tentar entrar /Players ou /Teams, retornará mensagem de erro, dizendo que não foi possivel se conectar ao Servidor.<br>
+<b>`Idade`</b>: Apenas INT.<br><br>
+<b>`Edit Jogador`</b>: Ele não pode ficar sem um time.<br><br>
+<b>`Conexão com o SERVIDOR`</b>, inicie apenas o Frontend, ao tentar entrar /Players ou /Teams, retornará mensagem de erro, dizendo que não foi possivel se conectar ao Servidor.<br>
 <b>OBS: Apenas fiz uma validação customizada para esses dois Endpoints</b>
 
 
@@ -35,8 +35,8 @@ ________________________________________________________________________________
 
 # Features
 Utilizei bibliotecas React / Next no Front-end para tornar o projeto mais dinâmico e melhor visualmente pro usuário,
-um exemplo de feature é o `Spinner de validação`, simulando um `request` para o backend,
-fazendo as verificações necessárias, aguardando o `response` para criar um `Player` ou `Team`
+um exemplo de feature é o <b>`Spinner de validação`</b>, simulando um <b>`request`</b> para o backend,
+fazendo as verificações necessárias, aguardando o <b>`response`</b> para criar um <b>`Player`</b> ou <b>`Team`</b>
 
 ____________________________________________________________________________________
 
