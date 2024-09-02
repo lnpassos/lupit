@@ -47,6 +47,6 @@ ________________________________________________________________________________
 `http://localhost:3000/create-player` - Criar novo Jogador<br>
 `http://localhost:3000/teams` - Mostra todos os Times criados.<br>
 `http://localhost:3000/players` - Mostra todos os Jogadores criados.<br>
-`http://localhost:3000/teams/8` - Mostra detalhes de um Time em específico.<br>
+`http://localhost:3000/teams/id` - Mostra detalhes de um Time em específico.<br>
 `http://localhost:3000/players/id` - Mostra detalhes de um Jogador em específico.
 
