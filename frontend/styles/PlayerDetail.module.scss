@@ -49,6 +49,18 @@
   z-index: 50;
 }
 
+.profileImage {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  max-width: 150px;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 40px;
+  cursor: pointer;
+}
+
 // Detalhes do jogador
 .playerDetails {
   margin-bottom: 20px;

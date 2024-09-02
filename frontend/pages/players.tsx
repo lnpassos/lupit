@@ -26,20 +26,30 @@ interface Player {
 // Acessando a API para obter os jogadores
 const PlayersPage = () => {
   const [players, setPlayers] = useState<Player[]>([]);
+  const [teams, setTeams] = useState<Team[]>([]); // Adicionando o estado para os times
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [currentPlayer, setCurrentPlayer] = useState<Player | null>(null);
+  const [selectedTeamId, setSelectedTeamId] = useState<number | null>(null); // Estado para o time selecionado
 
   useEffect(() => {
-    const fetchPlayers = async () => {
+    const fetchPlayersAndTeams = async () => {
       try {
-        const response = await fetch('http://localhost:3001/players');
-        if (!response.ok) {
+        const [playersResponse, teamsResponse] = await Promise.all([
+          fetch('http://localhost:3001/players'),
+          fetch('http://localhost:3001/teams') // Endpoint para buscar os times
+        ]);
+
+        if (!playersResponse.ok || !teamsResponse.ok) {
           throw new Error('Erro ao se conectar no servidor!');
         }
-        const data = await response.json();
-        setPlayers(data);
+
+        const playersData = await playersResponse.json();
+        const teamsData = await teamsResponse.json();
+
+        setPlayers(playersData);
+        setTeams(teamsData);
       } catch (error) {
         setError((error as Error).message);
       } finally {
@@ -47,17 +57,19 @@ const PlayersPage = () => {
       }
     };
 
-    fetchPlayers();
+    fetchPlayersAndTeams();
   }, []);
 
   const openModal = (player: Player) => {
     setCurrentPlayer(player);
+    setSelectedTeamId(player.team ? player.team.id : null); // Definindo o time selecionado no modal
     setModalIsOpen(true);
   };
 
   const closeModal = () => {
     setModalIsOpen(false);
     setCurrentPlayer(null);
+    setSelectedTeamId(null); // Resetando o time selecionado ao fechar o modal
   };
 
   const handleDelete = async (playerId: number) => {
@@ -107,10 +119,11 @@ const PlayersPage = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ 
-          name: updatedPlayer.name, 
+        body: JSON.stringify({
+          name: updatedPlayer.name,
           age: updatedPlayer.age,
-          updatedDt: updatedPlayer.updatedDt 
+          teamId: selectedTeamId, // Adicionando o teamId ao atualizar
+          updatedDt: updatedPlayer.updatedDt,
         }),
       });
 
@@ -120,7 +133,9 @@ const PlayersPage = () => {
 
       // Atualizar a lista de jogadores
       setPlayers((prevPlayers) =>
-        prevPlayers.map((player) => (player.id === updatedPlayer.id ? updatedPlayer : player))
+        prevPlayers.map((player) =>
+          player.id === updatedPlayer.id ? { ...updatedPlayer, team: teams.find((team) => team.id === selectedTeamId) || null } : player
+        )
       );
 
       Swal.fire('Sucesso!', 'Jogador atualizado com sucesso.', 'success');
@@ -230,7 +245,7 @@ const PlayersPage = () => {
       >
         <h2 className={styles.modalTitle}>Editar Jogador</h2>
         <div className={styles.form}>
-          <label className={styles.label}>Nome do Jogador</label>
+          <label className={styles.label}>Nome do Jogador:</label>
           <input
             type="text"
             value={currentPlayer?.name || ''}
@@ -239,7 +254,7 @@ const PlayersPage = () => {
             }
             className={styles.input}
           />
-          <label className={styles.label}>Idade</label>
+          <label className={styles.label}>Idade:</label>
           <input
             type="number"
             value={currentPlayer?.age || ''}
@@ -248,6 +263,19 @@ const PlayersPage = () => {
             }
             className={styles.input}
           />
+          <label className={styles.label}>Time:</label>
+          <select
+            value={selectedTeamId || ''}
+            onChange={(e) => setSelectedTeamId(parseInt(e.target.value, 10))}
+            className={styles.select}
+          >
+            <option value="">Nenhum time</option>
+            {teams.map((team) => (
+              <option key={team.id} value={team.id}>
+                {team.name}
+              </option>
+            ))}
+          </select>
           <div className={styles.buttons}>
             <button onClick={handleSave} className={styles.saveButton}>
               Salvar

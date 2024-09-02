@@ -19,7 +19,6 @@ interface Player {
   team: Team | null;
 }
 
-// Acessando a API para obter os detalhes do jogador
 const PlayerPage = () => {
   const router = useRouter();
   const { id } = router.query;
@@ -37,7 +36,7 @@ const PlayerPage = () => {
       try {
         const [playerResponse, teamsResponse] = await Promise.all([
           fetch(`http://localhost:3001/players/${id}`),
-          fetch('http://localhost:3001/teams') // Endpoint para buscar os times
+          fetch('http://localhost:3001/teams')
         ]);
 
         if (!playerResponse.ok || !teamsResponse.ok) {
@@ -89,7 +88,7 @@ const PlayerPage = () => {
         body: JSON.stringify({
           name: playerName,
           age: parseInt(playerAge, 10),
-          teamId: selectedTeamId, // Adicione o teamId ao atualizar
+          teamId: selectedTeamId,
         }),
       });
 
@@ -97,7 +96,6 @@ const PlayerPage = () => {
         throw new Error('Erro ao salvar o jogador');
       }
 
-      // Atualizar os detalhes do jogador na página
       setPlayer((prevPlayer) => ({
         ...prevPlayer!,
         name: playerName,
@@ -137,7 +135,7 @@ const PlayerPage = () => {
         }
 
         Swal.fire('Excluído!', 'O jogador foi excluído com sucesso.', 'success').then(() => {
-          router.push('/players');  // Redireciona para a lista de jogadores
+          router.push('/players');
         });
       } catch (error) {
         Swal.fire('Erro!', 'Não foi possível excluir o jogador.', 'error');
@@ -147,7 +145,7 @@ const PlayerPage = () => {
 
   const handleGoBack = () => {
     if (typeof window !== 'undefined') {
-      window.history.back(); // Voltar para a página anterior no histórico do navegador
+      window.history.back();
     }
   };
 
@@ -158,9 +156,14 @@ const PlayerPage = () => {
     <div className={styles.container}>
       <Header />
       <div className={styles.card}>
-      <span className={styles.backButton} onClick={handleGoBack}>Voltar</span>
+        <span className={styles.backButton} onClick={handleGoBack}>Voltar</span>
         <h1 className={styles.cardTitle}>Detalhes do Jogador</h1>
         <div className={styles.playerDetails}>
+          <img
+            src='../assets/profile-icon.png'
+            alt="Foto do Perfil"
+            className={styles.profileImage}
+          />
           <p className={styles.nameTitle}>{player.name}</p>
           <p><strong>Idade:</strong> {player.age}</p>
           <p><strong>Time:</strong> {player.team ? player.team.name : 'Nenhum time atribuído'}</p>
@@ -171,58 +174,55 @@ const PlayerPage = () => {
         </div>
       </div>
 
-
       <Modal
-      isOpen={modalIsOpen}
-      onRequestClose={closeModal}
-      contentLabel="Editar Jogador"
-      className={styles.modal}
-      overlayClassName={styles.overlay}
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        contentLabel="Editar Jogador"
+        className={styles.modal}
+        overlayClassName={styles.overlay}
       >
-        
-      <h2 className={styles.modalTitle}>Editar Jogador</h2>
-      <div className={styles.form}>
-        <label className={styles.label}>Nome:</label>
-        <input
-          type="text"
-          value={playerName}
-          onChange={(e) => setPlayerName(e.target.value)}
-          className={styles.input}
-        />
-        <label className={styles.label}>Idade:</label>
-        <input
-          type="number"
-          value={playerAge}
-          onChange={(e) => setPlayerAge(e.target.value)}
-          className={styles.input}
-        />
-        <label className={styles.label}>Time:</label>
-        <select
-          value={selectedTeamId || ''}
-          onChange={(e) => setSelectedTeamId(parseInt(e.target.value, 10))}
-          className={styles.input}
-        >
-          <option value="">Nenhum time</option>
-          {teams.map((team) => (
-            <option key={team.id} value={team.id}>
-              {team.name}
-            </option>
-          ))}
-        </select>
-        <div className={styles.buttons}>
-          <button onClick={handleEditSave} className={styles.saveButton}>
-            Salvar
-          </button>
-          <button onClick={closeModal} className={styles.cancelButton}>
-            Cancelar
-          </button>
+        <h2 className={styles.modalTitle}>Editar Jogador</h2>
+        <div className={styles.form}>
+          <label className={styles.label}>Nome:</label>
+          <input
+            type="text"
+            value={playerName}
+            onChange={(e) => setPlayerName(e.target.value)}
+            className={styles.input}
+          />
+          <label className={styles.label}>Idade:</label>
+          <input
+            type="number"
+            value={playerAge}
+            onChange={(e) => setPlayerAge(e.target.value)}
+            className={styles.input}
+          />
+          <label className={styles.label}>Time:</label>
+          <select
+            value={selectedTeamId || ''}
+            onChange={(e) => setSelectedTeamId(parseInt(e.target.value, 10))}
+            className={styles.input}
+          >
+            <option value="">Nenhum time</option>
+            {teams.map((team) => (
+              <option key={team.id} value={team.id}>
+                {team.name}
+              </option>
+            ))}
+          </select>
+          <div className={styles.buttons}>
+            <button onClick={handleEditSave} className={styles.saveButton}>
+              Salvar
+            </button>
+            <button onClick={closeModal} className={styles.cancelButton}>
+              Cancelar
+            </button>
+          </div>
         </div>
-      </div>
-    </Modal>
+      </Modal>
 
-
-    <ToastContainer />
-  </div>
+      <ToastContainer />
+    </div>
   );
 };
 

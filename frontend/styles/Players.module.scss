@@ -127,7 +127,6 @@
   text-align: center;
 }
 
-
 // Estilo para ícones 
 .icon {
   color: $primary-color;
@@ -139,14 +138,6 @@
     color: darken($primary-color, 15%);
   }
 }
-
-
-
-
-// ################################################################ //
-
-
-
 
 // Modal
 .overlay {
@@ -200,6 +191,28 @@
   font-size: 16px;
 }
 
+// Estilizando o select
+.select {
+  width: 100%;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid $border-color;
+  font-size: 16px;
+  box-sizing: border-box;
+  cursor: pointer;
+  
+  // Estilo para o texto selecionado
+  option {
+    padding: 8px;
+  }
+  
+  // Estilo para o foco
+  &:focus {
+    border-color: $primary-color;
+    outline: none;
+  }
+}
+
 .buttons {
   display: flex;
   flex-direction: column;
@@ -239,14 +252,6 @@
   background-color: darken($error-color, 10%);
 }
 
-
-
-
-// ################################################################ //
-
-
-
-
 // Animação de Loading de tela..
 .loadingContainer {
   display: flex;
@@ -268,12 +273,6 @@
   color: #00bfff;
   font-weight: bold;
 }
-
-
-
-// ################################################################ //
-
-
 
 // Erro caso o usuário não consiga acessar o servidor
 .error {
