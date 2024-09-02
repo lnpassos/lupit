@@ -25,19 +25,19 @@ ________________________________________________________________________________
 
 # Validações
 Não há muitas, para tornar a aplicação mais rápida. Algumas delas são:
-Nome: Apenas STR.
 Idade: Apenas INT.
-Edit Jogador: Ele não pode ficar sem um time.
+Edit Jogador: Ele não pode ficar sem um time.<br>
+
+Conexão com o `SERVIDOR`, inicie apenas o Frontend, ao tentar entrar /Players ou /Teams, retornará mensagem de erro, dizendo que não foi possivel se conectar ao Servidor.
+OBS: Apenas fiz uma validação customizada para esses dois Endpoints
+
 
 ____________________________________________________________________________________
 
-## IMPORTANT! 
-## Para navegar entre os Endpoints, apenas utilizei o menu fixo do Header, sendo o titulo: `Lupit`.
-
 # Features
-Utilizei bibliotecas React / Next no Front-end para tornar algo legal visualmente pro usuário,
-uma feature apenas como simulação é o `Spinner de validação`, simulando um `request` para o backend,
-fazendo as verificações necessárias, aguardando o `response` para criar o usuário.
+Utilizei bibliotecas React / Next no Front-end para tornar o projeto mais dinâmico e melhor visualmente pro usuário,
+um exemplo de feature é o `Spinner de validação`, simulando um `request` para o backend,
+fazendo as verificações necessárias, aguardando o `response` para criar um `Player / Team`.
 
 ____________________________________________________________________________________
 
